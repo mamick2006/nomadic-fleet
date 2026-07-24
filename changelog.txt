@@ -1,3 +1,10 @@
+v1.0.1
+Save compatible. Can be added to existing saves.
+
+- You can now search and page through the autoforge build list.
+- Fixed a the Nomad Flagship hullmod description.
+- Added a setting to open management from the Intel screen instead of the bottom bar, for cross-mod compatbility.
+
 v1.0.0
 Can be added to existing saves.
 
