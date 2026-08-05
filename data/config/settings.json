@@ -10,19 +10,25 @@
 	"plugins": {},
 
 	# ============================================================
-	# Sprite registry. Hullmod sprites under the "nomad" category;
-	# intel + Work icons under "icons"; intel illustrations under
+	# Sprite registry: a key belongs here only if code LOOKS IT UP. Art the engine resolves by
+	# path (hullmod sprites through hull_mods.csv, special-item icons through special_items.csv)
+	# needs no entry. Intel and point icons under "icons", intel and Work illustrations under
 	# "illustrations".
 	# ============================================================
 	"graphics": {
 		# The Management button's plate extension renders at RUNTIME from the game's own
 		# "ui"/"tripad_button_holder" sprite; no composed PNG ships.
+		# One key, because NomadRefitLunaButton looks it up for the LunaLib refit row's icon. The
+		# other four hullmod sprites were registered here and never looked up.
 		"nomad": {
-			"nomad_flagship": "graphics/nomad/hullmods/nomad_flagship.png",
 			"nomad_member": "graphics/nomad/hullmods/nomad_member.png",
-			"nomad_member_hold": "graphics/nomad/hullmods/nomad_member_hold.png",
-			"nomad_member_quarters": "graphics/nomad/hullmods/nomad_member_quarters.png",
-			"nomad_member_full": "graphics/nomad/hullmods/nomad_member_full.png",
+		},
+		# Captain's Quarters' own sprite category, which settings.json deep-merges into rather than
+		# replaces. The key is cq_f_ plus the furnishing id: their lookup trims only a LEADING
+		# "cq_", and this id has none, so the whole id passes through. An unregistered key is not
+		# fatal, it just leaves that mod drawing its placeholder outline on the cabin wall.
+		"cq": {
+			"cq_f_nomad_tally_board": "graphics/nomad/furnishings/nomad_f_tally_board.png",
 		},
 		"icons": {
 			"nomad_intel": "graphics/nomad/icons/nomad_intel.png",
@@ -30,38 +36,8 @@
 			"nomad_intel_short": "graphics/nomad/icons/nomad_intel_short.png",
 			"nomad_intel_paused": "graphics/nomad/icons/nomad_intel_paused.png",
 			"nomad_intel_detached": "graphics/nomad/icons/nomad_intel_detached.png",
-			"nomad_work_hydroponics_ring": "graphics/nomad/icons/nomad_work_hydroponics_ring.png",
-			"nomad_work_forge_vat": "graphics/nomad/icons/nomad_work_forge_vat.png",
-			"nomad_work_fuel_still": "graphics/nomad/icons/nomad_work_fuel_still.png",
-			"nomad_work_guild_hall": "graphics/nomad/icons/nomad_work_guild_hall.png",
-			"nomad_work_autoforge_bay": "graphics/nomad/icons/nomad_work_autoforge_bay.png",
-			"nomad_alloc_mining": "graphics/nomad/icons/nomad_alloc_mining.png",
-			"nomad_alloc_refining": "graphics/nomad/icons/nomad_alloc_refining.png",
-			"nomad_alloc_machinery": "graphics/nomad/icons/nomad_alloc_machinery.png",
-			"nomad_alloc_autoforge": "graphics/nomad/icons/nomad_alloc_autoforge.png",
 			"nomad_autoforge_production": "graphics/nomad/icons/nomad_autoforge_production.png",
 			"nomad_credits": "graphics/nomad/icons/nomad_credits.png",
-			"nomad_work_bonded_hold": "graphics/nomad/icons/nomad_work_bonded_hold.png",
-			"nomad_work_bonded_berths": "graphics/nomad/icons/nomad_work_bonded_berths.png",
-			"nomad_work_chartroom": "graphics/nomad/icons/nomad_work_chartroom.png",
-			"nomad_work_quiet_running": "graphics/nomad/icons/nomad_work_quiet_running.png",
-			"nomad_work_civilian_band_watch": "graphics/nomad/icons/nomad_work_civilian_band_watch.png",
-			"nomad_work_wayfinding_loft": "graphics/nomad/icons/nomad_work_wayfinding_loft.png",
-			"nomad_work_tug_cradles": "graphics/nomad/icons/nomad_work_tug_cradles.png",
-			"nomad_work_watch_officers": "graphics/nomad/icons/nomad_work_watch_officers.png",
-			"nomad_work_militia_gunners": "graphics/nomad/icons/nomad_work_militia_gunners.png",
-			"nomad_work_damage_control_watch": "graphics/nomad/icons/nomad_work_damage_control_watch.png",
-			"nomad_work_pride_of_home": "graphics/nomad/icons/nomad_work_pride_of_home.png",
-			"nomad_work_round_the_clock_yards": "graphics/nomad/icons/nomad_work_round_the_clock_yards.png",
-			"nomad_work_storm_rider_rig": "graphics/nomad/icons/nomad_work_storm_rider_rig.png",
-			"nomad_work_long_ward": "graphics/nomad/icons/nomad_work_long_ward.png",
-			"nomad_work_levy_hall": "graphics/nomad/icons/nomad_work_levy_hall.png",
-			"nomad_work_harbor_days": "graphics/nomad/icons/nomad_work_harbor_days.png",
-			"nomad_work_pursers_kickbacks": "graphics/nomad/icons/nomad_work_pursers_kickbacks.png",
-			"nomad_work_foundry_annex": "graphics/nomad/icons/nomad_work_foundry_annex.png",
-			"nomad_work_militia_dedication": "graphics/nomad/icons/nomad_work_militia_dedication.png",
-			"nomad_work_tinkering_facilities": "graphics/nomad/icons/nomad_work_tinkering_facilities.png",
-			"nomad_work_refinery": "graphics/nomad/icons/nomad_work_refinery.png",
 		},
 		"illustrations": {
 			"nomad_illus_flotilla": "graphics/nomad/illustrations/nomad_illus_flotilla.png",
@@ -181,23 +157,22 @@
 	"nomad_credits_sale_min_fill_frac": 0.40,
 	"nomad_crew_extract_reserve": 10,
 
-	# --- Hullmod penalties, as percentages. The flagship's ship effects are IDENTICAL
-	# to a member's (30/30/10); its privilege is a discounted OP cost + carrying the Works/items. The
-	# dedication variants take more: Cargo/Full give ALL cargo (100), Quarters/Full give crew to skeleton
-	# (a flat retarget in the hullmod, not a percentage). ---
-	"nomad_flagship_cargo_penalty": 30,
-	"nomad_flagship_maxcrew_penalty": 30,
-	"nomad_flagship_supplies_penalty": 10,
+	# --- Hullmod percentages. Each ship carries its OWN two dedication percentages, set on the refit screen
+	# and stored on the ship's variant. The keys here are the values a fresh
+	# conversion starts at AND the lowest a ship may be set to: a converted ship gets the per-ship Works
+	# bonuses whatever it gives, so raising these raises the price of membership and lowering them cheapens
+	# it. The flagship's ship effects are IDENTICAL to a member's, off these same keys; its
+	# privileges are a discounted OP cost and carrying the Works and colony items.
+	# Cargo percentage becomes Space, quarters percentage becomes Berths, and 100% quarters leaves the
+	# skeleton crew aboard. ---
+	"nomad_dedication_default_cargo": 30,
+	"nomad_dedication_default_quarters": 30,
+	"nomad_member_supplies_penalty": 10,
+	# The two keys below are what the three retired conversion hullmods (Cargo / Quarters / Full) mean on
+	# their non-converted axis. Those hullmods stay installed and working on existing saves and can no longer
+	# be installed; the values here keep what such a ship loses and what the Flotilla credits it in step.
 	"nomad_member_cargo_penalty": 30,
 	"nomad_member_maxcrew_penalty": 30,
-	"nomad_member_supplies_penalty": 10,
-	"nomad_member_hold_cargo_penalty": 100,
-	"nomad_member_hold_maxcrew_penalty": 30,
-	"nomad_member_hold_supplies_penalty": 10,
-	"nomad_member_quarters_cargo_penalty": 30,
-	"nomad_member_quarters_supplies_penalty": 10,
-	"nomad_member_full_cargo_penalty": 100,
-	"nomad_member_full_supplies_penalty": 10,
 
 	# --- Residents' needs, per resident per month (organics is mined, not a need) ---
 	# The food NEED and the base food YIELD (below) move in LOCKSTEP. The pairing is the point: every
@@ -563,7 +538,7 @@
 	"nomad_item_pristine_nanoforge_autoforge": 0.20,
 	# The Pristine Nanoforge also gives a +3% GLOBAL
 	# production-efficiency bonus, additive in the same one group as the Fullerene +3% and Cryoarithmetic +2%
-	# bonuses below (all three installed fold to +8%). FLAT / mode-independent like those two. Pristine-only;
+	# bonuses below (with the Hypershunt Tap, all four installed fold to +13%). FLAT / mode-independent like those two. Pristine-only;
 	# corrupted gets no efficiency effect (nothing to win over, so the one-nanoforge-slot rule is moot here).
 	"nomad_item_pristine_nanoforge_efficiency": 0.03,
 	# Biofactory: a food OUTPUT bonus (adds with soil nanites' bonus), alongside its luxury boost
@@ -584,7 +559,11 @@
 	"nomad_item_plasma_dynamo_volatiles": 0.50,
 	# Cryoarithmetic: autoforge speed +20%, plus +2% global efficiency (above).
 	"nomad_item_cryoarithmetic_autoforge_speed": 0.20,
-	"nomad_item_cryoarithmetic_efficiency": 0.02,
+	# The four global-efficiency keys are named nomad_item_<item id>_efficiency, because which items
+	# raise global efficiency comes from data/config/nomad/nomad_items.csv and each row's value is read
+	# under that key. These win over the row, so this file stays where the numbers are tuned.
+	"nomad_item_cryoarithmetic_engine_efficiency": 0.02,
+	"nomad_item_coronal_portal_efficiency": 0.05,
 	"nomad_item_dealmaker_autoforge_cost": 0.10,
 	# Dealmaker Holosuite boosts the credits-line yield
 	# (mode-independent, like every item magnitude), keeping its autoforge-material
@@ -595,6 +574,28 @@
 	"nomad_item_core_staff_alpha": 0.07,
 	"nomad_item_core_staff_beta": 0.05,
 	"nomad_item_core_staff_gamma": 0.03,
+
+	# ============================================================
+	# Content this mod adds to OTHER mods' tables. Both numbers are
+	# balanced here, on this mod's own surface, because both effects
+	# are Flotilla effects; the other mod supplies the roster the
+	# content sits in and nothing else.
+	# ============================================================
+
+	# The Flotilla Tally Board, a Captain's Quarters furnishing: +1% GLOBAL efficiency,
+	# additive in the same group as the four colony items (+13% with all four, +14% with
+	# the board as well). The smallest contributor in that group by design, below the
+	# Cryoarithmetic Engine's +2%: it is a cabin fitting and they are Domain artifacts.
+	"nomad_cq_tally_board_efficiency": 0.01,
+
+	# The board's whole acquisition path, and no code on either side of it. Captain's
+	# Quarters polls each configured flag and grants the furnishing when it turns true;
+	# settings.json deep-merges, so this adds an entry to that mod's own map rather than
+	# replacing it. $nomad_founded is set by the economy tick once the Flotilla exists,
+	# including on a save made before this update.
+	"cq_quest_rewards": {
+		"$nomad_founded": "nomad_tally_board",
+	},
 
 	# --- Founding & migrant pickup. Founding residents = min(founding_residents,
 	# founding_berth_frac x current berths) — 25 cap, small fleets seed smaller. ---

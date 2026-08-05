@@ -1,9 +1,23 @@
+v1.1.0
+Save compatible. Can be added to existing saves.
+
+- Autoforge can now build fighter wings.
+- Colony items installation should be fixed.
+- Fixed the refit screen ignoring Expanded Cargo Holds and Additional Berthing.
+- Splitting off the Flotilla from the management screen now tells you what your cargo, fuel and crew capacity become once those ships leave.
+- You can now manually set how much cargo and quarters each ship converts to the Flotilla (including the flagship). This is actually a substantial buff. I might need to nerf it.
+- The Nomad Cargo, Quarters and Full Conversion hullmods are deprecated.
+- Round-the-Clock Yards' bonus now ends as soon as you scrap the Work, instead of lingering for a few days.
+- Added support for other mods adding their own Works, colony items, and allocations. See MODDING.md.
+- Added cross-mod interactions with Captain's Quarters.
+- Rewrote the Manual
+
 v1.0.1
 Save compatible. Can be added to existing saves.
 
 - You can now search and page through the autoforge build list.
-- Fixed a the Nomad Flagship hullmod description.
-- Added a setting to open management from the Intel screen instead of the bottom bar, for cross-mod compatbility.
+- Fixed the Nomad Flagship hullmod description.
+- Added a setting to open management from the Intel screen instead of the bottom bar, for cross-mod compatibility.
 
 v1.0.0
 Can be added to existing saves.

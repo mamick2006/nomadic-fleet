@@ -1,0 +1,3 @@
+name,id,tags,tech/manufacturer,rarity,base price,stack size,cargo space,baseRaidDanger,icon,sound id,sound id drop,plugin,plugin params,desc,order
+# order blocks: vanilla <=500; Captain's Quarters 900-971 (full); Nomadic Fleet 972; Liminal 995; testkit (test only) 9000+. A new mod should start at 1000.,,,,,,,,,,,,,,,
+Flotilla Tally Board,nomad_tally_board,"cq_furnishing, cq_pool_quest",Nomad Flotilla,,4000,1,1,,graphics/nomad/furnishings/nomad_icon_tally_board.png,ui_chip_pickup,ui_modspec_drop,nomad.crossmod.NomadFurnishingItem,,"A slate board divided into columns, used to keep track of production inside the Flotilla.",972

@@ -1,0 +1,2 @@
+id,name,category,rarity,channel,kind,mag,pct,kind2,mag2,pct2,plugin
+nomad_tally_board,Flotilla Tally Board,cq_slot_wall,uncommon,quest,,0,0,,0,0,nomad.crossmod.NomadFurnishingEffect

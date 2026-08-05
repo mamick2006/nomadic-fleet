@@ -1,0 +1,2 @@
+id,name,effect,staffPerSpace,icon,plugin
+#nomad_builtin_note,"This mod's own allocations are not rows: the commodity lines are vanilla commodity ids, and mining, autoforge and credits are built in. The table exists so another mod can add a pseudo-allocation of its own, which takes space and staff and runs its own nomad.api.NomadAllocationEffect on the economy tick. See MODDING.md.",,,,
