@@ -1,3 +1,10 @@
+v1.3.0
+Save compatible. Can be added to existing saves.
+
+- Added an autoforge yield multiplier setting.
+- You can now drag the top bar to move it around.
+- Fixed a bug where the production multiplier setting didn't apply to every allocation.
+
 v1.2.0
 Save compatible. Can be added to existing saves.
 

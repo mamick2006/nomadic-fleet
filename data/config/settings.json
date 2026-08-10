@@ -83,6 +83,11 @@
 	# is installed; this is the fallback default when it isn't. ---
 	"nomad_difficulty_default": "Survival",
 	"nomad_yield_mult_override": 1.0,
+	# The autoforge's own yield multiplier (the LunaLib nomad_autoforge_yield_mult field when LunaLib is
+	# installed; this is the fallback without it). It scales nomad_autoforge_value_per_space_per_day
+	# below, so points/month and the material draw/month move together at par: the credits of materials
+	# per point of output are the same at every setting, and only build TIME changes.
+	"nomad_autoforge_yield_mult_override": 1.0,
 
 	# --- Difficulty multipliers. Story mode is TWO separable levers ---
 	#   1. a GLOBAL PRODUCTION-EFFICIENCY boost x1.25 (nomad_story_efficiency_mult) applied OUTPUT-ONLY,

@@ -343,7 +343,8 @@
   "nomad_topbar": {
     "bar_mining_out_of_reach": "MINING · out of reach",
     "bar_mining_not_parked": "MINING · not parked",
-    "bar_mining_at": "MINING · %s"
+    "bar_mining_at": "MINING · %s",
+    "bar_grip_tip": "Drag to move the bar. Right-click to put it back at the top of the screen."
   },
   "nomad_crossmod": {
     "cq_name": "Flotilla Tally Board",
