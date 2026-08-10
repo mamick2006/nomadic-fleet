@@ -1,3 +1,9 @@
+v1.2.0
+Save compatible. Can be added to existing saves.
+
+- Added a revert button, which notably can be used to undo the balance buttons if you don't like them. The balance button will also say how much space/money it takes.
+- Works will now show the actual amount of space they take if they require a percentage.
+
 v1.1.0
 Save compatible. Can be added to existing saves.
 
