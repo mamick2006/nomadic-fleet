@@ -7,7 +7,7 @@ A migrant population, the Flotilla, moves aboard your ships. Nomad hullmods turn
 
 No required dependencies. Can be added to existing saves.
 
-Forum link: TODO
+[Forum link](https://fractalsoftworks.com/forum/index.php?topic=35859.0)
 
 ## Screenshots
 
