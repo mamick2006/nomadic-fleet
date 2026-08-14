@@ -3,7 +3,7 @@
   "name": "Nomad Flotilla",
   "author": "Mamick",
   "utility": "false",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "A migrant population, the Flotilla, lives aboard your ships. A collection of hullmods turns a ship's cargo space and crew quarters into working room and berths for the population, which runs its own production: hydroponics, forge-vats, mining, and an autoforge that builds ships, weapons or fighter wings.",
   "gameVersion": "0.98a-RC8",
   "jars": [

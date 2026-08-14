@@ -98,8 +98,10 @@
 	#      (Hydroponics/Forge-Vat/Fuel-Still/Guild-Hall/Refinery yields). Combat/utility Works (militia
 	#      family, PPT, ship stats, officers) are IDENTICAL across modes.
 	# A blanket bonus multiplier over-rewards stacked colony items; this split is a modest, legible Story
-	# economy. Colony items read the same in both modes (nomad_item_effect_mult_story 1.0); Story's
+	# economy. Colony items read the same in every mode (nomad_item_effect_mult_story 1.0); Story's
 	# edge is the Works amplification plus the global efficiency boost.
+	# TRIVIAL is Story plus two flat reliefs (nomad_trivial_* below), never a separate multiplier set: every
+	# Story lever above still applies to it.
 	"nomad_yield_mult_survival": 1.0,
 	"nomad_yield_mult_story": 1.0,
 	"nomad_works_effect_mult_survival": 1.0,
@@ -110,10 +112,33 @@
 	# as (staffing efficiency x this) so it lifts every line's OUTPUT while leaving input draw at the
 	# yield*space rate — which is exactly what makes it compound through the refining chain.
 	"nomad_story_efficiency_mult": 1.25,
+	# Trivial's EXTRA global production-efficiency boost, composed on TOP of the Story one rather than
+	# replacing it, so Trivial runs at 1.25 x 1.25 = 1.5625.
+	"nomad_trivial_efficiency_mult": 1.25,
+	# Pool space one stored unit costs in Trivial. Quantities held are unchanged; a hold of 100 food simply
+	# spends 50 of the shared pool, so the same fleet stores twice as much.
+	"nomad_trivial_storage_space_mult": 0.5,
 	# Input WASTE is real down to this efficiency (output scales with efficiency, input holds
 	# at the full-yield draw); below it the input draw scales down with eff/floor so a cold-start or deep shortage
 	# cannot spiral. 0.75 = at eff 0.5 a line makes 0.5 output for a 0.6667 input draw.
 	"nomad_efficiency_waste_floor": 0.75,
+
+	# --- Player handicaps (design.md 3b), all neutral by default ---
+	# Multiplies every Nomad hullmod's ordnance point cost. Applied to the loaded hullmod specs off the
+	# CSV bases NomadOpCost captures at application load, all five mods, so a retired conversion on an
+	# old save gets the same relief. REBALANCE HERE, never by editing the LunaSettings.csv default:
+	# LunaLib persists its defaults per install and goes on serving the stored value, so a changed
+	# default reaches nobody who has already run the mod.
+	"nomad_op_cost_mult": 1.0,
+	# The three optional ship penalties, applied by every Nomad hullmod to the ship carrying it. The
+	# TOGGLES are LunaLib rows with no settings.json key (the Boolean convention across these mods);
+	# these are the magnitudes each toggle applies, so a retune moves the number without touching a
+	# LunaLib default. The percentages in the three LunaSettings.csv descriptions restate them, and
+	# FallbackDriftTest pins the pair, so a retune here reds until the row text follows.
+	"nomad_nerf_speed_mult": 0.85,
+	"nomad_nerf_rof_mult": 0.85,
+	# Subtracted from max CR on the 0..1 scale: 0.15 is the 15 points a d-mod tooltip renders as "15%".
+	"nomad_nerf_cr_penalty": 0.15,
 
 	# --- Growth; same in both modes, pickup-driven ---
 	# There is deliberately NO luxury growth key (key and field dropped, not zeroed, so nothing can serve
@@ -526,8 +551,11 @@
 	# (nomad_item_effect_mult_story 1.0). Nanoforge
 	# supplies bonuses: pristine replaces corrupted (no stack). ---
 	"nomad_item_soil_nanites_food": 0.50,
-	"nomad_item_catalytic_core_fuel_input": 0.40,
-	"nomad_item_synchrotron_fuel": 0.60,
+	# Both of these are input-ratio cuts, not yield bonuses. The Catalytic Core cuts the SAME two ratios
+	# the Refinery cuts (metals<-ore, rare_metals<-rare_ore) and composes multiplicatively with it; the
+	# Synchrotron cuts the fuel line's volatiles ratio and composes with the Fuel Still the same way.
+	"nomad_item_catalytic_core_ore_input": 0.20,
+	"nomad_item_synchrotron_fuel_input": 0.40,
 	# The two nanoforges are SPREAD APART deliberately: the gap between corrupted and
 	# pristine is what spreads the late game from the mid game on the supplies line. Items read
 	# identically in both modes, so the gap works through the flat magnitudes alone.
@@ -558,8 +586,8 @@
 	# applied — NomadProduction.effectiveBerths). Berths are a CAPACITY (housing)
 	# effect, not a production/yield effect, so the Story multiplier does not scale them.
 	"nomad_item_orbital_fusion_lamp_berths": 0.10,
-	# Plasma Dynamo: a single-resource booster sized between Mantle Bore's general mining lift and
-	# Synchrotron's fuel bonus.
+	# Plasma Dynamo: a single-resource booster, pitched just above Mantle Bore's general mining lift
+	# because it covers volatiles alone.
 	"nomad_item_mantle_bore_mining": 0.40,
 	"nomad_item_plasma_dynamo_volatiles": 0.50,
 	# Cryoarithmetic: autoforge speed +20%, plus +2% global efficiency (above).

@@ -1,11 +1,17 @@
 fieldID,fieldName,fieldType,defaultValue,secondaryValue,fieldDescription,minValue,maxValue,tab
 nomad_settingsHeader,Nomad Flotilla,Header,Nomad Flotilla,,,,,
-nomad_difficulty,Difficulty,Radio,Survival,"Survival, Story","Sets how effective your Works and colony items are.
-- Survival: Works and colony items have their default effect. The Flotilla sustains itself but has little surplus.
-- Story: yield-based Works and colony items are 1.5x as effective, and global efficiency is multiplied by 1.25.",,,
+nomad_difficulty,Difficulty,Radio,Survival,"Survival, Story, Trivial","Sets how much the Flotilla produces.
+- Survival: no bonuses. The Flotilla sustains itself but has little surplus.
+- Story: yield-based Works are 1.5x as effective, and global efficiency is multiplied by 1.25.
+- Trivial: everything Story gives, and global efficiency is multiplied by another 1.25, and stored commodities take up half the space.",,,
 nomad_mgmt_intel_only,Manage on Intel Screen,Boolean,false,,"Manage this mod through an intel screen entry instead of its own Management bar button (for mod compatibility). If you don't see the manage button at the bottom, try turning this on. Takes effect on the next game load.",,,
 nomad_yield_mult,Production Multiplier,Double,1.0,,[Will affect balance a lot] Global multiplier on all onboard production.,0.2,5.0,
 nomad_autoforge_yield_mult,Autoforge Yield Multiplier,Double,1.0,,"Multiplier on autoforge yield in particular (affects both inputs and outputs).",0.01,10.0,
 nomad_growth_rate,Population Growth Rate,Double,0.02,,"Compounding population growth while every need is met and berths are free. 0.02 = 2 percent per cycle. Most growth comes from migrant pickups or crew you manually move to the Flotilla.",0.0,0.2,
 nomad_pickup_cooldown_days,Migrant Pickup Cooldown (days),Int,180,,How long before a colony offers the Flotilla migrants again.,0,1000,
 nomad_topbar_enabled,Show Campaign Top Bar,Boolean,true,,"Whether the Flotilla status bar appears at the top of the campaign map.",,,
+nomad_handicapsHeader,Hullmod,Header,Handicaps,,,,,
+nomad_op_cost_mult,Ordnance Point Cost Multiplier,Double,1.0,,"Multiplies the OP cost of every Nomad hullmod.",0.0,3.0,
+nomad_nerf_speed,Reduce Top Speed,Boolean,false,,"Ships with a Nomad hullmod have -15%% top speed.",,,
+nomad_nerf_rof,Reduce Rate of Fire,Boolean,false,,"Ships with a Nomad hullmod have -15%% rate of fire.",,,
+nomad_nerf_cr,Reduce Combat Readiness,Boolean,false,,"Ships with a Nomad hullmod have -15%% maximum combat readiness.",,,

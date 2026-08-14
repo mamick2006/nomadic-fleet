@@ -1,3 +1,17 @@
+v1.4.0
+Save compatible. Can be added to existing saves.
+
+- Fixed detached Flotilla ships sometimes losing hullmods (though doesn't fix existing saves).
+- A detached Flotilla despawned by another mod now counts destroyed.
+- Added intel messages when a detached Flotilla loses ships or is destroyed.
+- The Catalytic Core now reduces ore and transplutonic ore inputs instead of fuel volatiles.
+- The Synchrotron Core now reduces fuel volatiles input, replacing its fuel yield bonus.
+- Added a Trivial difficulty meant to be more powerful than a colony.
+- Added a setting for the hullmods' ordnance point cost.
+- Added optional handicap settings that lower top speed, fire rate, and combat readiness.
+- Added a close button to the Flotilla screen, and Escape now closes it instead of the whole refit screen.
+- Fixed the Flotilla screen sometimes not appearing when opened from the refit screen.
+
 v1.3.0
 Save compatible. Can be added to existing saves.
 
