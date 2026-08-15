@@ -1,3 +1,8 @@
+v1.4.1
+Save compatible. Can be added to existing saves.
+
+- Fixed colony items not appearing in the Items tab when another mod alters their item data.
+
 v1.4.0
 Save compatible. Can be added to existing saves.
 
