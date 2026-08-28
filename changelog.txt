@@ -1,3 +1,16 @@
+v1.5.0
+Save compatible. Can be added to existing saves.
+
+- Added idle residents and unused space to the top of the allocations and Works lists.
+- Building a Work logic for disabling now matches allocations.
+- Allocations and Works can now use all free space.
+- Added a design filter to the autoforge build list.
+- Weapons in the autoforge build list now show the game's own weapon details on hover.
+- Fixed the Flotilla losing space and berths when it split off. Its space and berths are now frozen at what it had when it left.
+- Mothballing a Flotilla ship now deletes its space until you unmothball it.
+- A Work are Suspended if they don't have enough space.
+- Fixed ships losing their Cargo and Quarters percentages when their loadout was replaced.
+
 v1.4.1
 Save compatible. Can be added to existing saves.
 

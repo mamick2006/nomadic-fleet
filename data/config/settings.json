@@ -164,12 +164,6 @@
 	# (nomad_store_min) is the same 10, so seed x trackedN fits the founding pool exactly; if a future tune makes
 	# seed x trackedN exceed the pool, the available pool is split evenly across the commodities instead.
 	"nomad_founding_store_seed": 10,
-	# The coverage model (NomadBalance.evaluateCoverage) reserves this fraction
-	# of usable space UNALLOCATED so the shared storage pool (the pool IS the unallocated space)
-	# can hold the ore/rare_ore/metals input buffer the multi-step supplies chain consumes. Without it a
-	# 100%-allocated fleet has a ~zero pool, the chains starve, and the real tick can't reach the closed-form
-	# coverage. ~20% is about a month of chain inputs.
-	"nomad_coverage_buffer_frac": 0.20,
 	# Credits line: the purser's brokerage is a true RESIDENT
 	# SINK — 2 residents/allocation (nomad_staff_credits 2.0 below). Credits give straight money, so the
 	# direct rate sits BELOW the best commodity line's net value per staff (food, the anchor): HALF the

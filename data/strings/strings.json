@@ -128,11 +128,13 @@
     "al_row_tip_backpressure": "When its hold is full, the allocation makes only enough to fill the remaining space and consumes inputs to match, until there is room. Turn on this commodity's auto-out in Stores to send the surplus to your cargo and keep the allocation running.",
     "al_row_tip_throttled": "A full hold has throttled it from %s/mo; the surplus and its inputs are not made.",
     "al_yield_tip_what": "Yield %s multiplies this allocation's output and inputs. It comes from Works and colony items.",
-    "al_yield_tip_none": "No Works or colony items raise this allocation yet."
+    "al_yield_tip_none": "No Works or colony items raise this allocation yet.",
+    "al_yield_tip_suspended_head": "Suspended, so not counted:"
   },
   "nomad_works": {
     "wk_intro_pct": "% of total is extra space on top of a Work's Static space, scaled to the Flotilla's total space.",
     "wk_intro_timing": "Building takes %s days; scrapping refunds %s of the cost. No dock needed.",
+    "wk_suspended_tip": "The %s is idle. The cheapest works are disabled until there is enough space for them.",
     "wk_scrap_tip": "Scrap the %s. You get back %s, %s of the build cost.",
     "wk_cancel_tip": "Cancel the %s. You get back %s, %s of the cost so far.",
     "wk_build_tip": "Build the %s: %s, %s space, %s staff, %s days to finish.",
