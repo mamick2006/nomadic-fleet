@@ -1,3 +1,9 @@
+v1.5.1
+Save compatible. Can be added to existing saves.
+
+- Fixed ships built by the autoforge missing their modules.
+- Fixed ships built by the autoforge showing the Strike variant name.
+
 v1.5.0
 Save compatible. Can be added to existing saves.
 
