@@ -1,0 +1,16 @@
+package nomad.api;
+
+public enum NomadFleetStat {
+
+  SENSOR_RANGE_PERCENT,
+
+  SENSOR_PROFILE_PERCENT,
+
+  MAX_BURN,
+
+  SURVEY_COST_PERCENT,
+
+  GROUND_RAID_PERCENT,
+
+  OFFICER_SLOTS
+}

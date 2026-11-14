@@ -1,0 +1,27 @@
+package nomad.campaign.econ.model;
+
+public enum WorkStatus {
+  RUNNING,
+  IDLE,
+  UNSTAFFED,
+  MOTHBALLED,
+  SUSPENDED,
+  BUILDING,
+  STANDING_DOWN,
+  LACKING;
+
+  public enum Reason {
+    NONE,
+    NO_DEPOSIT,
+    EMPTY_QUEUE,
+    QUEUE_WAITING,
+    INPUT_EMPTY,
+    NO_RESIDENTS_TO_SPARE,
+    NO_BERTHS_FOR_RESIDENTS,
+    OUTPUT_FULL,
+    HOLD_FULL,
+    MARINES_DETACHED,
+    MARINES_AT_TARGET,
+    MARINES_NO_ROOM
+  }
+}

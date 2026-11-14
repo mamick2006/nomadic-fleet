@@ -1,6 +1,6 @@
 {
 	# ============================================================
-	# Nomad Flotilla - design-type lineage tint. A desaturated
+	# Nomad Flotilla: design-type lineage tint. A desaturated
 	# bronze/tan: a migrant fleet, not a bright faction.
 	# ============================================================
 	"designTypeColors": {
@@ -8,6 +8,15 @@
 	},
 
 	"plugins": {},
+
+	# Defaults for the LunaLib checkboxes of the same keys, read when LunaLib is not installed.
+	"nomad_mgmt_intel_only": false,
+	"nomad_topbar_enabled": true,
+	"nomad_survival_adjustments": true,
+
+	# The Manage button's shortcut key as an LWJGL key code (21 is Y, 0 is none), for a
+	# game without LunaLib. The LunaLib row of the same name overrides it.
+	"nomad_mgmt_key": 21,
 
 	# ============================================================
 	# Sprite registry: a key belongs here only if code LOOKS IT UP. Art the engine resolves by
@@ -18,8 +27,7 @@
 	"graphics": {
 		# The Management button's plate extension renders at RUNTIME from the game's own
 		# "ui"/"tripad_button_holder" sprite; no composed PNG ships.
-		# One key, because NomadRefitLunaButton looks it up for the LunaLib refit row's icon. The
-		# other four hullmod sprites were registered here and never looked up.
+		# One key, for the icon on the LunaLib refit row.
 		"nomad": {
 			"nomad_member": "graphics/nomad/hullmods/nomad_member.png",
 		},
@@ -40,146 +48,152 @@
 			"nomad_credits": "graphics/nomad/icons/nomad_credits.png",
 		},
 		"illustrations": {
-			"nomad_illus_flotilla": "graphics/nomad/illustrations/nomad_illus_flotilla.png",
 			"nomad_illus_habring": "graphics/nomad/illustrations/nomad_illus_habring.png",
 			"nomad_illus_autoforge": "graphics/nomad/illustrations/nomad_illus_autoforge.png",
 			"nomad_illus_items": "graphics/nomad/illustrations/nomad_illus_items.png",
-			"nomad_work_illus_hydroponics_ring": "graphics/nomad/illustrations/nomad_work_illus_hydroponics_ring.png",
-			"nomad_work_illus_forge_vat": "graphics/nomad/illustrations/nomad_work_illus_forge_vat.png",
-			"nomad_work_illus_fuel_still": "graphics/nomad/illustrations/nomad_work_illus_fuel_still.png",
+			"nomad_illus_manual": "graphics/nomad/illustrations/nomad_illus_manual.png",
+			"nomad_illus_history": "graphics/nomad/illustrations/nomad_illus_history.png",
+			"nomad_work_illus_hydroponic_farm": "graphics/nomad/illustrations/nomad_work_illus_hydroponic_farm.png",
+			"nomad_work_illus_supplies_factory": "graphics/nomad/illustrations/nomad_work_illus_supplies_factory.png",
+			"nomad_work_illus_fuel_plant": "graphics/nomad/illustrations/nomad_work_illus_fuel_plant.png",
 			"nomad_work_illus_guild_hall": "graphics/nomad/illustrations/nomad_work_illus_guild_hall.png",
-			"nomad_work_illus_bonded_hold": "graphics/nomad/illustrations/nomad_work_illus_bonded_hold.png",
-			"nomad_work_illus_bonded_berths": "graphics/nomad/illustrations/nomad_work_illus_bonded_berths.png",
-			"nomad_work_illus_chartroom": "graphics/nomad/illustrations/nomad_work_illus_chartroom.png",
-			"nomad_work_illus_quiet_running": "graphics/nomad/illustrations/nomad_work_illus_quiet_running.png",
-			"nomad_work_illus_civilian_band_watch": "graphics/nomad/illustrations/nomad_work_illus_civilian_band_watch.png",
-			"nomad_work_illus_wayfinding_loft": "graphics/nomad/illustrations/nomad_work_illus_wayfinding_loft.png",
-			"nomad_work_illus_tug_cradles": "graphics/nomad/illustrations/nomad_work_illus_tug_cradles.png",
-			"nomad_work_illus_watch_officers": "graphics/nomad/illustrations/nomad_work_illus_watch_officers.png",
-			"nomad_work_illus_militia_gunners": "graphics/nomad/illustrations/nomad_work_illus_militia_gunners.png",
-			"nomad_work_illus_damage_control_watch": "graphics/nomad/illustrations/nomad_work_illus_damage_control_watch.png",
-			"nomad_work_illus_pride_of_home": "graphics/nomad/illustrations/nomad_work_illus_pride_of_home.png",
-			"nomad_work_illus_round_the_clock_yards": "graphics/nomad/illustrations/nomad_work_illus_round_the_clock_yards.png",
-			"nomad_work_illus_storm_rider_rig": "graphics/nomad/illustrations/nomad_work_illus_storm_rider_rig.png",
-			"nomad_work_illus_long_ward": "graphics/nomad/illustrations/nomad_work_illus_long_ward.png",
-			"nomad_work_illus_levy_hall": "graphics/nomad/illustrations/nomad_work_illus_levy_hall.png",
-			"nomad_work_illus_harbor_days": "graphics/nomad/illustrations/nomad_work_illus_harbor_days.png",
-			"nomad_work_illus_pursers_kickbacks": "graphics/nomad/illustrations/nomad_work_illus_pursers_kickbacks.png",
-			"nomad_work_illus_foundry_annex": "graphics/nomad/illustrations/nomad_work_illus_foundry_annex.png",
-			"nomad_work_illus_militia_dedication": "graphics/nomad/illustrations/nomad_work_illus_militia_dedication.png",
+			"nomad_work_illus_dormitory": "graphics/nomad/illustrations/nomad_work_illus_dormitory.png",
+			"nomad_work_illus_survey_office": "graphics/nomad/illustrations/nomad_work_illus_survey_office.png",
+			"nomad_work_illus_stealth_control_room": "graphics/nomad/illustrations/nomad_work_illus_stealth_control_room.png",
+			"nomad_work_illus_sensor_station": "graphics/nomad/illustrations/nomad_work_illus_sensor_station.png",
+			"nomad_work_illus_slipstream_chart_room": "graphics/nomad/illustrations/nomad_work_illus_slipstream_chart_room.png",
+			"nomad_work_illus_tug_bay": "graphics/nomad/illustrations/nomad_work_illus_tug_bay.png",
+			"nomad_work_illus_officer_academy": "graphics/nomad/illustrations/nomad_work_illus_officer_academy.png",
+			"nomad_work_illus_gunnery_range": "graphics/nomad/illustrations/nomad_work_illus_gunnery_range.png",
+			"nomad_work_illus_damage_control_room": "graphics/nomad/illustrations/nomad_work_illus_damage_control_room.png",
+			"nomad_work_illus_family_cabins": "graphics/nomad/illustrations/nomad_work_illus_family_cabins.png",
+			"nomad_work_illus_repair_yard": "graphics/nomad/illustrations/nomad_work_illus_repair_yard.png",
+			"nomad_work_illus_storm_shielding_workshop": "graphics/nomad/illustrations/nomad_work_illus_storm_shielding_workshop.png",
+			"nomad_work_illus_hospital": "graphics/nomad/illustrations/nomad_work_illus_hospital.png",
+			"nomad_work_illus_raid_training_ground": "graphics/nomad/illustrations/nomad_work_illus_raid_training_ground.png",
+			"nomad_work_illus_passenger_terminal": "graphics/nomad/illustrations/nomad_work_illus_passenger_terminal.png",
+			"nomad_work_illus_purchasing_office": "graphics/nomad/illustrations/nomad_work_illus_purchasing_office.png",
+			"nomad_work_illus_watch_stations": "graphics/nomad/illustrations/nomad_work_illus_watch_stations.png",
 			"nomad_work_illus_tinkering_facilities": "graphics/nomad/illustrations/nomad_work_illus_tinkering_facilities.png",
 			"nomad_work_illus_refinery": "graphics/nomad/illustrations/nomad_work_illus_refinery.png",
+			"nomad_work_illus_domestic_goods_plant": "graphics/nomad/illustrations/nomad_work_illus_domestic_goods_plant.png",
+			"nomad_work_illus_luxury_goods_factory": "graphics/nomad/illustrations/nomad_work_illus_luxury_goods_factory.png",
+			"nomad_work_illus_machinery_factory": "graphics/nomad/illustrations/nomad_work_illus_machinery_factory.png",
+			"nomad_work_illus_mining_rig": "graphics/nomad/illustrations/nomad_work_illus_mining_rig.png",
+			"nomad_work_illus_foundry": "graphics/nomad/illustrations/nomad_work_illus_foundry.png",
+			"nomad_work_illus_brokerage": "graphics/nomad/illustrations/nomad_work_illus_brokerage.png",
+			"nomad_work_illus_military_fabricator": "graphics/nomad/illustrations/nomad_work_illus_military_fabricator.png",
+			"nomad_work_illus_drug_lab": "graphics/nomad/illustrations/nomad_work_illus_drug_lab.png",
+			"nomad_work_illus_organ_harvester": "graphics/nomad/illustrations/nomad_work_illus_organ_harvester.png",
+			"nomad_work_illus_marine_barracks": "graphics/nomad/illustrations/nomad_work_illus_marine_barracks.png",
+			"nomad_work_illus_lobster_farm": "graphics/nomad/illustrations/nomad_work_illus_lobster_farm.png",
+			"nomad_work_illus_gate_freight_office": "graphics/nomad/illustrations/nomad_work_illus_gate_freight_office.png",
+			"nomad_work_illus_school": "graphics/nomad/illustrations/nomad_work_illus_school.png",
+			"nomad_work_illus_patrol_supply_depot": "graphics/nomad/illustrations/nomad_work_illus_patrol_supply_depot.png",
+			"nomad_work_illus_cargo_shuttle_bay": "graphics/nomad/illustrations/nomad_work_illus_cargo_shuttle_bay.png",
+			"nomad_work_illus_insurance_office": "graphics/nomad/illustrations/nomad_work_illus_insurance_office.png",
+			"nomad_work_illus_assault_course": "graphics/nomad/illustrations/nomad_work_illus_assault_course.png",
+			"nomad_work_illus_welding_shop": "graphics/nomad/illustrations/nomad_work_illus_welding_shop.png",
+			"nomad_work_illus_cloning_vats": "graphics/nomad/illustrations/nomad_work_illus_cloning_vats.png",
+			"nomad_work_illus_panopticon": "graphics/nomad/illustrations/nomad_work_illus_panopticon.png",
+			"nomad_work_illus_restoration_bay": "graphics/nomad/illustrations/nomad_work_illus_restoration_bay.png",
+			"nomad_work_illus_domain_parts_workshop": "graphics/nomad/illustrations/nomad_work_illus_domain_parts_workshop.png",
+			"nomad_work_illus_shops": "graphics/nomad/illustrations/nomad_work_illus_shops.png",
+			"nomad_work_illus_theater": "graphics/nomad/illustrations/nomad_work_illus_theater.png",
+			"nomad_work_illus_luxury_quarters": "graphics/nomad/illustrations/nomad_work_illus_luxury_quarters.png",
+			"nomad_work_illus_basic_needs": "graphics/nomad/illustrations/nomad_work_illus_basic_needs.png",
+			# Basic Needs, one picture a level: nomad_needs_illus_<NeedsLevel.key>. Normal is the
+			# Work picture above, and the other five repaint its deck. Non-existent has no picture
+			# of its own: its key is the Decrepit file, which the screen draws dimmed.
+			"nomad_needs_illus_nonexistent": "graphics/nomad/illustrations/nomad_needs_illus_decrepit.png",
+			"nomad_needs_illus_decrepit": "graphics/nomad/illustrations/nomad_needs_illus_decrepit.png",
+			"nomad_needs_illus_spartan": "graphics/nomad/illustrations/nomad_needs_illus_spartan.png",
+			"nomad_needs_illus_normal": "graphics/nomad/illustrations/nomad_work_illus_basic_needs.png",
+			"nomad_needs_illus_nice": "graphics/nomad/illustrations/nomad_needs_illus_nice.png",
+			"nomad_needs_illus_lavish": "graphics/nomad/illustrations/nomad_needs_illus_lavish.png",
+			"nomad_needs_illus_opulent": "graphics/nomad/illustrations/nomad_needs_illus_opulent.png",
 		},
 	},
 
 	# ============================================================
-	# BALANCE CONSTANTS. All nomad_-prefixed,
-	# read via Global.getSettings().getFloat / getInt. The pure economy core
-	# (nomad.campaign.econ) takes these as parameters and never reads them
-	# itself. Tune numbers HERE.
+	# BALANCE CONSTANTS. All nomad_-prefixed. Tune numbers HERE.
 	# ============================================================
 
 	# --- Difficulty. The active mode is a LunaLib Radio (nomad_difficulty) when LunaLib
-	# is installed; this is the fallback default when it isn't. ---
-	"nomad_difficulty_default": "Survival",
+	# is installed; this is the fallback default when it isn't. One of Auto, Survival, Normal or
+	# Story. Auto is Survival in a game started in Survival Mode and Normal otherwise, decided each
+	# time the difficulty is read. Any other name reads as Auto. ---
+	"nomad_difficulty_default": "Auto",
 	"nomad_yield_mult_override": 1.0,
-	# The autoforge's own yield multiplier (the LunaLib nomad_autoforge_yield_mult field when LunaLib is
-	# installed; this is the fallback without it). It scales nomad_autoforge_value_per_space_per_day
-	# below, so points/month and the material draw/month move together at par: the credits of materials
-	# per point of output are the same at every setting, and only build TIME changes.
+	# The Foundry's own multiplier (the LunaLib nomad_autoforge_yield_mult field when LunaLib is
+	# installed; this is the fallback without it). It scales the Foundry production made a month, and
+	# the materials go by the unit of Foundry production, so the materials for a job are the same at
+	# every setting and only build time changes.
 	"nomad_autoforge_yield_mult_override": 1.0,
 
-	# --- Difficulty multipliers. Story mode is TWO separable levers ---
-	#   1. a GLOBAL PRODUCTION-EFFICIENCY boost x1.25 (nomad_story_efficiency_mult) applied OUTPUT-ONLY,
-	#      so it COMPOUNDS through the surplus refining chain: each stage's x1.25 output at a
-	#      fixed input draw frees the intermediary (metals/rare_metals feeder) allocations multiplicatively
-	#      (a two-stage supplies chain nets ~x1.25 on the supplies line and ~x1.5625 on the feeders);
-	#   2. a YIELD-BONUS multiplier x1.5 (nomad_works_effect_mult_story) on the YIELD-based Works ONLY
-	#      (Hydroponics/Forge-Vat/Fuel-Still/Guild-Hall/Refinery yields). Combat/utility Works (militia
-	#      family, PPT, ship stats, officers) are IDENTICAL across modes.
-	# A blanket bonus multiplier over-rewards stacked colony items; this split is a modest, legible Story
-	# economy. Colony items read the same in every mode (nomad_item_effect_mult_story 1.0); Story's
-	# edge is the Works amplification plus the global efficiency boost.
-	# TRIVIAL is Story plus two flat reliefs (nomad_trivial_* below), never a separate multiplier set: every
-	# Story lever above still applies to it.
-	"nomad_yield_mult_survival": 1.0,
-	"nomad_yield_mult_story": 1.0,
-	"nomad_works_effect_mult_survival": 1.0,
-	"nomad_works_effect_mult_story": 1.5,
+	# --- Difficulty multipliers. Normal difficulty and Story difficulty each multiply global
+	# efficiency, and each asks less of Basic Needs (nomad_bn_normal_difficulty_want_mult and
+	# nomad_bn_story_difficulty_want_mult, in the Basic Needs block). Global efficiency scales what
+	# a Work uses along with what it makes, so neither makes a chain thriftier. Colony items read
+	# the same at every difficulty (nomad_item_effect_mult_normal_difficulty 1.0). ---
 	"nomad_item_effect_mult_survival": 1.0,
-	"nomad_item_effect_mult_story": 1.0,
-	# Story global production-efficiency boost: 1.0 in Survival, this in Story. Applied output-only
-	# as (staffing efficiency x this) so it lifts every line's OUTPUT while leaving input draw at the
-	# yield*space rate — which is exactly what makes it compound through the refining chain.
-	"nomad_story_efficiency_mult": 1.25,
-	# Trivial's EXTRA global production-efficiency boost, composed on TOP of the Story one rather than
-	# replacing it, so Trivial runs at 1.25 x 1.25 = 1.5625.
-	"nomad_trivial_efficiency_mult": 1.25,
-	# Pool space one stored unit costs in Trivial. Quantities held are unchanged; a hold of 100 food simply
-	# spends 50 of the shared pool, so the same fleet stores twice as much.
-	"nomad_trivial_storage_space_mult": 0.5,
-	# Input WASTE is real down to this efficiency (output scales with efficiency, input holds
-	# at the full-yield draw); below it the input draw scales down with eff/floor so a cold-start or deep shortage
-	# cannot spiral. 0.75 = at eff 0.5 a line makes 0.5 output for a 0.6667 input draw.
+	"nomad_item_effect_mult_normal_difficulty": 1.0,
+	# Normal difficulty's multiplier on global efficiency. Survival's is 1.0.
+	"nomad_normal_difficulty_efficiency_mult": 1.25,
+	# Story difficulty's extra multiplier, on top of Normal difficulty's and not in place of it, so
+	# Story difficulty runs at 1.25 x 1.25 = 1.5625.
+	"nomad_story_difficulty_efficiency_mult": 1.25,
+	# In Story difficulty a store reserves this share of the Space it otherwise would (see Store
+	# targets).
+	"nomad_story_difficulty_storage_space_mult": 0.5,
+	# Under 100% global efficiency a Work draws its whole inputs and makes less from them, down to
+	# this efficiency. Below it the draw falls with efficiency / floor, so a Flotilla at a low Basic
+	# Needs level does not burn whole inputs for almost nothing. 0.75 = at 0.5 a Work makes half
+	# and draws 0.6667.
 	"nomad_efficiency_waste_floor": 0.75,
 
-	# --- Player handicaps (design.md 3b), all neutral by default ---
-	# Multiplies every Nomad hullmod's ordnance point cost. Applied to the loaded hullmod specs off the
-	# CSV bases NomadOpCost captures at application load, all five mods, so a retired conversion on an
-	# old save gets the same relief. REBALANCE HERE, never by editing the LunaSettings.csv default:
-	# LunaLib persists its defaults per install and goes on serving the stored value, so a changed
-	# default reaches nobody who has already run the mod.
+	# --- Player handicaps, all neutral by default ---
+	# Multiplies every Nomad hullmod's ordnance point cost. REBALANCE HERE, never by editing the
+	# LunaSettings.csv default: LunaLib persists its defaults per install and goes on serving the stored
+	# value, so a changed default reaches nobody who has already run the mod.
 	"nomad_op_cost_mult": 1.0,
 	# The three optional ship penalties, applied by every Nomad hullmod to the ship carrying it. The
-	# TOGGLES are LunaLib rows with no settings.json key (the Boolean convention across these mods);
-	# these are the magnitudes each toggle applies, so a retune moves the number without touching a
-	# LunaLib default. The percentages in the three LunaSettings.csv descriptions restate them, and
-	# FallbackDriftTest pins the pair, so a retune here reds until the row text follows.
+	# toggles are LunaLib rows, and the three false keys are their defaults without LunaLib. The other
+	# three are the magnitudes each toggle applies, so a retune moves the number without touching a
+	# LunaLib default. The percentages in the three LunaSettings.csv descriptions restate them, so a
+	# retune here needs the same change in those descriptions.
+	"nomad_nerf_speed": false,
+	"nomad_nerf_rof": false,
+	"nomad_nerf_cr": false,
 	"nomad_nerf_speed_mult": 0.85,
 	"nomad_nerf_rof_mult": 0.85,
 	# Subtracted from max CR on the 0..1 scale: 0.15 is the 15 points a d-mod tooltip renders as "15%".
 	"nomad_nerf_cr_penalty": 0.15,
 
-	# --- Growth; same in both modes, pickup-driven ---
-	# There is deliberately NO luxury growth key (key and field dropped, not zeroed, so nothing can serve
-	# a stale persisted value): luxuries do not increase population growth. Luxury is a shortage-penalised
-	# need (below): meeting it is neutral, missing it costs efficiency + population.
-	"nomad_growth_rate": 0.02,
+	# --- Residents. Growth and leaving are set by the Basic Needs level (the Basic Needs block).
+	# While the Flotilla is paused, this share of its residents leaves each month. ---
 	"nomad_paused_decay": 0.30,
 
-	# --- Space model (space/berths ARE the hullmod deltas). Non-resident stores
-	# share ONE pool = all space not given to Works or allocations, + a nomad_store_min floor per tracked
-	# commodity, + the Bonded Hold pool bonus. Each store has a player-set maximum (default
-	# nomad_store_max_default; hard min nomad_store_min, which is also the per-commodity pool floor). Adding
-	# an allocation costs nomad_alloc_cost credits at press time (removing refunds nothing). ---
-	# The default store maximum is kept low: a high default lets a single hold swallow the whole pool
-	# of a small/mid Flotilla, so the per-commodity maximum never binds and the "Maximum storage" control
-	# does nothing until very late; a low default is a live cap the player raises deliberately. (Old saves
-	# keep any value already stamped into NomadFleetData.storeMax; this default applies to unset holds only.)
-	"nomad_store_max_default": 100,
-	"nomad_store_min": 10,
-	"nomad_alloc_cost": 30,
-	# A newly-founded Flotilla seeds its holds with this many units of EACH tracked commodity
-	# so it opens with no shortages and every Balance button works from turn one. The pool's per-commodity floor
-	# (nomad_store_min) is the same 10, so seed x trackedN fits the founding pool exactly; if a future tune makes
-	# seed x trackedN exceed the pool, the available pool is split evenly across the commodities instead.
-	"nomad_founding_store_seed": 10,
-	# Credits line: the purser's brokerage is a true RESIDENT
-	# SINK — 2 residents/allocation (nomad_staff_credits 2.0 below). Credits give straight money, so the
-	# direct rate sits BELOW the best commodity line's net value per staff (food, the anchor): HALF the
-	# mild below-parity band, in exchange for the brokerage sales below.
-	"nomad_credits_per100_space": 407.5,
-	# Brokerage sales: each credits allocation also sells up to units_per_alloc units per month
-	# (fractioned per economy tick) from ONE hold — the priciest sell-enabled commodity standing above
-	# min_fill_frac of its effective cap — at price_frac of base price, paid into the same monthly income
-	# node as the direct payout. min_fill_frac 0.40 sits deliberately BELOW the 0.50 autotransfer-in
-	# pull-below fraction, so auto-in keeps refilling what the purser sells: a sink for surplus cargo on
-	# long trips. price_frac 0.60 keeps every sale strictly worse than hauling the goods to a market
-	# yourself.
-	"nomad_credits_sale_units_per_alloc": 1.0,
+	# --- The Brokerage's sales. It sells what the Sell and Sell cargo flags allow at this share of
+	# base price, which keeps every sale worse than hauling the goods to a market yourself. What it
+	# pays in credits and how many units it sells a month are its rows in
+	# data/config/nomad/nomad_work_sizes.csv. ---
 	"nomad_credits_sale_price_frac": 0.60,
-	"nomad_credits_sale_min_fill_frac": 0.40,
+	# In a game started in Survival Mode, the brokerage sells at (1 minus ext_normalTariff minus survival_gap) of
+	# base price instead of price_frac. Survival's tariff is 40% where a normal game's is 30%, so a market
+	# sale there nets 0.60 of base, and a 0.60 brokerage would no longer be the worse deal. The gap is the
+	# one a normal game has (0.70 against 0.60), so vanilla's Survival tariff gives 0.50, and a mod that
+	# changes the tariff moves the fraction with it. Unused when the player turns off
+	# nomad_survival_adjustments.
+	"nomad_credits_sale_survival_gap": 0.10,
+	# The Brokerage's own credits get this share of what global efficiency adds above 100%: at 0.5
+	# and 130% global efficiency they are paid at 115%. 0 gives them none of the increase and 1
+	# all of it, as a production Work's output gets. Below 100% they follow global efficiency in
+	# full, and how many units the Brokerage sells always does.
+	"nomad_brokerage_bonus_share": 0.5,
+	# Taking residents out as crew leaves at least this many aboard.
 	"nomad_crew_extract_reserve": 10,
+	"nomad_marines_target_default": 100,
 
 	# --- Hullmod percentages. Each ship carries its OWN two dedication percentages, set on the refit screen
 	# and stored on the ship's variant. The keys here are the values a fresh
@@ -192,118 +206,9 @@
 	"nomad_dedication_default_cargo": 30,
 	"nomad_dedication_default_quarters": 30,
 	"nomad_member_supplies_penalty": 10,
-	# The two keys below are what the three retired conversion hullmods (Cargo / Quarters / Full) mean on
-	# their non-converted axis. Those hullmods stay installed and working on existing saves and can no longer
-	# be installed; the values here keep what such a ship loses and what the Flotilla credits it in step.
-	"nomad_member_cargo_penalty": 30,
-	"nomad_member_maxcrew_penalty": 30,
 
-	# --- Residents' needs, per resident per month (organics is mined, not a need) ---
-	# The food NEED and the base food YIELD (below) move in LOCKSTEP. The pairing is the point: every
-	# need line's space is demand/(yield x eff), so scaling both by the same factor leaves the food
-	# allocation and staffing identical while setting food's SALE value per space —
-	# held to second place between domestic and luxury, so food is NOT the top earner.
-	"nomad_need_food": 0.022,
-	"nomad_need_domestic_goods": 0.02,
-	"nomad_need_supplies": 0.03,
-	"nomad_need_luxury_goods": 0.01,
-	# heavy_machinery upkeep: scales with ALLOCATED space (wear/parts), not residents. Kept mild: the
-	# upkeep grows with every allocation AND its shortage cuts efficiency hard, so the two compound.
-	"nomad_need_machinery_per100space": 0.125,
-
-	# --- Unmet-need effects. Each shortage has ONE FLAT effect,
-	# applied in full whenever the need is unmet (NOT scaled by the shortfall fraction, no "up to"):
-	# it drops GLOBAL (production) efficiency to the stated multiplier AND removes a flat % of population per
-	# month. Efficiency penalties stack multiplicatively across simultaneously-unmet needs. Every need
-	# (incl. domestic, machinery, luxury) carries BOTH an efficiency hit and a monthly population loss;
-	# any unmet need also blocks growth. Efficiency is floorless.
-	# eff penalty p means "efficiency x (1 - p)": food x0.75, domestic x0.85, supplies x0.60, machinery
-	# x0.40, luxury x0.90.
-	# Attrition is the flat monthly population loss on a shortage; MACHINERY's attrition is zero
-	# (a machinery shortage costs efficiency ONLY, not population — parts wear is not a famine). ---
-	"nomad_eff_penalty_food": 0.25,
-	"nomad_eff_penalty_domestic_goods": 0.15,
-	"nomad_eff_penalty_supplies": 0.40,
-	"nomad_eff_penalty_machinery": 0.60,
-	"nomad_eff_penalty_luxury_goods": 0.10,
-	"nomad_starve_attrition": 0.10,
-	"nomad_attrition_supplies": 0.05,
-	"nomad_attrition_domestic_goods": 0.03,
-	"nomad_attrition_machinery": 0.0,
-	"nomad_attrition_luxury_goods": 0.015,
-
-	# --- Producible yields per 100 space per month at 100% staffing, Survival. metals
-	# and rare_metals are refined (from mined ore/rare_ore); heavy_machinery is fabricated. ---
-	# The base yields are set at the level where the no-Works START fleet self-suffices with a 3-8%
-	# space sliver; Works + colony items then carry the mid and late game. rare_metals is
-	# sized so the supplies chain's transplutonics feeder does not bottleneck the surplus (a starved
-	# feeder caps the LATE Story surplus regardless of the Story mult) while transplutonics stays the
-	# priciest refined good.
-	# The refined-good yields pair with their coverage-facing input ratios: K_m = supplies<-metals ratio /
-	# metals yield, K_r = supplies<-rare / rare_metals yield, K_d = the domestic coupling
-	# [domestic need + luxRatio x luxury need] / domestic yield. Retuning a ratio requires re-deriving its
-	# paired yield to hold the six difficulty targets (food/luxury have no coverage feeder; supplies is the surplus
-	# good itself). The food yield moves in LOCKSTEP with nomad_need_food above (see the needs block).
-	"nomad_yield_food": 7.5295,
-	"nomad_yield_domestic_goods": 16.42,
-	"nomad_yield_supplies": 9.435,
-	"nomad_yield_luxury_goods": 4.44,
-	"nomad_yield_fuel": 24.05,
-	"nomad_yield_metals": 97.125,
-	"nomad_yield_rare_metals": 5.75,
-	"nomad_yield_heavy_machinery": 2.96,
-
-	# --- Staff demand, per space. Mining + autoforge allocations have their own staff. ---
-	# The starter self-mining loop is PEOPLE-bound: its staff cost = raw bill / mining value-per-staff, so
-	# with mining held below food on the per-staff ladder (food 4.706 stays the best per-staff line and the
-	# credits anchor), the mining staff rate is what fits the whole-chain mining inside a starter
-	# fleet's idle residents. 0.27 puts mining at 4.44/staff (6% under food) and lands the whole-chain
-	# mining staff at ~210 (66% of idle).
-	"nomad_staff_food": 0.32,
-	"nomad_staff_domestic_goods": 0.32,
-	"nomad_staff_supplies": 0.45,
-	"nomad_staff_luxury_goods": 0.52,
-	"nomad_staff_fuel": 0.39,
-	"nomad_staff_metals": 0.39,
-	"nomad_staff_rare_metals": 0.45,
-	"nomad_staff_heavy_machinery": 0.45,
-	"nomad_staff_mining": 0.27,
-	"nomad_staff_autoforge": 0.50,
-	# Credits line: a HIGH staff demand — the purser's brokerage pays for
-	# itself in labour, not materials. A true resident sink at 2 residents/allocation; this
-	# premium is also the lever that keeps credits-per-staff in its intended band (see the credits
-	# rate note above).
-	"nomad_staff_credits": 2.0,
-
-	# --- Multi-input production chains, units per unit produced. A line whose inputs
-	# aren't fully stocked produces nothing that tick (all-or-nothing). Food takes no input
-	# (pure staffed yield); supplies takes metals + rare_metals (Transplutonics), not organics. ---
-	# INPUT QUANTITY EXCEEDS OUTPUT QUANTITY on every chain — you supply more
-	# (cheaper) input units to get fewer (more valuable) output units, roughly output_value/input_value per
-	# unit; metals<-ore is the MOST EXTREME end (a pure quantity multiplier).
-	# The ONE deliberate exception is FUEL<-volatiles: volatiles (250cr) are FAR pricier than fuel (25cr),
-	# so input>output makes no economic sense there — the price-inverted edge; its low
-	# ratio also keeps fuel above mining on the value ladder (every producible must clear mining). The
-	# heavy ore/rare_ore draw is fed by the value-weighted mining rate below.
-	# The input ratios are ordered so net-value-per-alloc-space ascends by refining tier (raw-adjacent
-	# metals/rare_metals lowest, luxury top), each line within +/-25% of its tier rung.
-	# The coverage-facing invariants hold the six difficulty targets when a ratio moves:
-	# supplies<-metals ratio / metals yield (K_m), supplies<-rare / rare yield (K_r), and the domestic
-	# coupling [0.02 + 0.01*luxRatio]/domestic-yield (K_d) are each preserved by re-deriving the paired
-	# yield (see the yields block). The FREE ratios (metals<-ore, rare<-rare_ore, domestic<-organics, the
-	# heavy_machinery inputs, fuel<-volatiles) are not coverage-facing, so they set the margins directly.
-	"nomad_input_domestic_goods_organics": 1.40,
-	"nomad_input_supplies_metals": 1.5,
-	"nomad_input_supplies_rare_metals": 0.23,
-	"nomad_input_luxury_goods_domestic_goods": 1.19,
-	"nomad_input_fuel_volatiles": 0.086,
-	"nomad_input_metals_ore": 2.95,
-	"nomad_input_rare_metals_rare_ore": 2.54,
-	"nomad_input_heavy_machinery_metals": 2.0,
-	"nomad_input_heavy_machinery_rare_metals": 0.30,
-
-	# --- Per-commodity base prices (credits/unit; vanilla commodities.csv). Feed the exploit-bounds
-	# credit math + the autoforge value->units conversion. Glue can override with live getBasePrice(). ---
+	# --- Per-commodity base prices (credits/unit; vanilla commodities.csv). In play the mod uses
+	# the game's own prices instead, and Survival Mode's prices in a Survival Mode game. ---
 	"nomad_price_food": 20,
 	"nomad_price_organics": 30,
 	"nomad_price_domestic_goods": 50,
@@ -316,238 +221,62 @@
 	"nomad_price_rare_ore": 75,
 	"nomad_price_volatiles": 250,
 	"nomad_price_heavy_machinery": 150,
+	"nomad_price_hand_weapons": 500,
+	"nomad_price_drugs": 200,
+	"nomad_price_organs": 300,
+	# A resident, for a Work that consumes residents: the game's price for one crew, which is
+	# what moving a resident to your crew costs. Residents are not a commodity, so the game has
+	# no price to replace this one with.
+	"nomad_price_residents": 50,
+	"nomad_price_marines": 200,
 
-	# --- Mining: VALUE-WEIGHTED. A raw's mined QUANTITY is inversely proportional to its
-	# base price, so cheap ore comes in high quantity and pricey transplutonic ore / volatiles come in
-	# much less: units/space/mo = nomad_mining_value_per_space / price(raw) x the body's deposit tier
-	# (0.5x sparse .. 3.0x ultrarich, per resource; mining items on top), per PRESENT raw at the FULL
-	# rate. Mining speed takes NO account of the number of deposit types: a multi-type body pays the sum
-	# over its types (type count is site quality, the same class as tier richness). Sell-INCOME per raw is units x price = its share of value_per_space
-	# (the price cancels), keeping this a CREDITS-per-space knob.
-	# Sized so the need chains' whole-chain self-mining fits a starter fleet (~1.18 space and
-	# ~0.32 staff per resident, inside the starter's idle residents with margin) at the 1/3-duty ROAMING
-	# basis on a 3-type body. On the value ladder mining sits above the basic-refined tier, below
-	# domestic/food/luxury per space AND per staff (4.44/staff vs food's 4.706, so food keeps the credits
-	# anchor). The BALANCE framing: the sustainable haul is 1/3-time parking x 1x tiers; a dedicated
-	# grinder on an ultrarich body earns a higher peak.
-	# The mid-game raw-hunger lever is the Refinery below (input draw -1/3).
-	"nomad_mining_value_per_space": 3.6,
-	# The mining REACH (distinct from the rate above), i.e. how close in campaign map
-	# units the fleet must sit to a body to work it. Read campaign-side by NomadMiningResolver.resolve and
-	# the top-bar proximity check; NOT an econ-core constant. Both readers keep a
-	# matching 333f fallback for when the key is absent.
+	# --- Mining. The Mining Rig's rates are its rows in data/config/nomad/nomad_work_sizes.csv:
+	# 360 credits of each raw a month for 100 Space at a 1.0x deposit, times the deposit's tier
+	# (0.5x sparse to 3.0x ultrarich), for every raw the body has. ---
+	# How close, in campaign map units, the fleet must be to a body to mine it.
 	"nomad_mining_radius": 333,
 
-	# --- Autoforge: the allocation consumes the materials mix
-	# (metals/rare_metals/heavy_machinery, split by VALUE at LIVE base prices - NomadEcon overrides every
-	# base price with getCommoditySpec().getBasePrice(), so the bill tracks modded prices dynamically) and
-	# emits PRODUCTION POINTS. Each queue item costs points = 100% of its runtime spec value; the head banks
-	# points until paid. The mix is split by value; a VALUE split changes the
-	# per-material UNIT counts but never the total bill.
-	# The material bill is material_value_frac x the points' value: at live prices the input value is 150%
-	# of the output value by construction. A rate change scales points/month and the material draw/month
-	# together (the draw is priced from the points).
-	# A fully-dedicated ~2000-space Atlas assembles a ~400k capital in ~545 days base; the
-	# fabricate-to-sell loop loses (1.35x bill even with the Dealmaker discount, still above par).
-	# d-mods base 4 / corrupted 2 / pristine 1.
-	"nomad_autoforge_material_value_frac": 1.5,
-	"nomad_autoforge_metals_share": 0.50,
-	"nomad_autoforge_rare_metals_share": 0.40,
-	"nomad_autoforge_machinery_share": 0.10,
-	# There is deliberately NO nomad_autoforge_min_days key: an estimate floor on the picker path alone
-	# would disagree with the queue head's raw division, so both share one derivation
-	# (NomadProduction.autoforgeDaysForPoints).
-	"nomad_autoforge_value_per_space_per_day": 0.366667,
+	# --- The Foundry (the autoforge). A queued job costs Foundry production equal to its
+	# value, and the head of the queue banks Foundry production until it is paid. How much the
+	# Foundry makes a month and the materials each unit takes are its rows in data/config/nomad/nomad_work_sizes.csv.
+	# There is deliberately NO nomad_autoforge_min_days key: a floor on the picker's estimate alone
+	# would disagree with the build time, so both use one calculation.
+	# d-mods base 4 / corrupted 2 / pristine 1. ---
 	"nomad_autoforge_dmod_base": 4,
 	"nomad_autoforge_dmod_corrupted": 2,
 	"nomad_autoforge_dmod_pristine": 1,
 
-	# --- Detachment: no tunable. A detached fleet runs at full efficiency and its
-	# ships draw their EFFECTIVE monthly supplies from the Flotilla's own hold, read live from the fleet
-	# member stats. ---
+	# --- Detachment. A detached Flotilla pays its ships' monthly supplies from its own store. ---
+	# A detached Flotilla waits at the nearest surveyed mineable body within this many map units.
+	# If there is none, it waits where it detached.
+	"nomad_split_anchor_body_range": 2500,
 
-	# --- Works: cost / space / staff. Per-Work space is nomad_work_<id>_space PLUS an optional
-	# nomad_work_<id>_pct_of_total share of the Flotilla's total space (the allocation-scaling / fleet-wide
-	# Works carry a share; truly-fixed-benefit Works are flat). Atmo Recyclery, Deck Bazaar, Autoforge Bay,
-	# Cryosanctum and Rigger's Court are not buildable and have no keys. ---
-	# Hydroponics Ring is an allocation-SCALING yield Work — a flat UNCAPPED multiplier (mult below)
-	# carrying a pctOfTotal share (sized so
-	# the uncapped multiplier stays a real trade, not a free windfall) and a small flat footprint.
-	"nomad_work_hydroponics_ring_cost": 45000,
-	"nomad_work_hydroponics_ring_space": 60,
-	"nomad_work_hydroponics_ring_staff": 40,
-	"nomad_work_hydroponics_ring_pct_of_total": 0.09,
-	"nomad_work_forge_vat_cost": 40000,
-	"nomad_work_forge_vat_space": 90,
-	"nomad_work_forge_vat_staff": 60,
-	"nomad_work_forge_vat_pct_of_total": 0.03,
-	"nomad_work_fuel_still_cost": 35000,
-	"nomad_work_fuel_still_space": 130,
-	"nomad_work_fuel_still_staff": 40,
-	"nomad_work_fuel_still_pct_of_total": 0.05,
-	"nomad_work_guild_hall_cost": 25000,
-	"nomad_work_guild_hall_space": 40,
-	"nomad_work_guild_hall_staff": 15,
-	"nomad_work_guild_hall_pct_of_total": 0.04,
-
-	# --- Works: effect knobs. worksEffectMult scales the multiplier part in Story. The
-	# yield Works are UNCAPPED multipliers, kept deliberately small. ---
-	"nomad_work_hydroponics_ring_mult": 1.85,
-	# Kept deliberately small: a larger Forge-Vat multiplier over-feeds the economy.
-	"nomad_work_forge_vat_mult": 1.6,
-	"nomad_work_fuel_still_mult": 1.7,
-	"nomad_work_fuel_still_volatiles_reduction": 0.25,
-	"nomad_work_guild_hall_yield_bonus": 0.07,
-	"nomad_work_build_days": 30,
+	# --- Works. A Work's Space, staff, cost and what each size does are rows of
+	# data/config/nomad/nomad_work_sizes.csv. What is left here is how
+	# long a build takes, what scrapping pays back, and the effect numbers no row carries. A row's
+	# params column wins over any of the effect numbers. ---
+	"nomad_work_build_days": 15,
 	"nomad_work_scrap_refund": 0.25,
-	# Autoforge-bay queue cap (autoforge is an allocation).
-	"nomad_work_autoforge_bay_queue": 3,
-
-	# ============================================================
-	# NEW WORKS. Each rides on a
-	# public campaign/combat API (nomad.campaign.works). Footprints (cost/space/staff) are read by
-	# the core; effect magnitudes are read by the
-	# works layer via Global.getSettings().getFloat.
-	# ============================================================
-	# --- Capacity Works (pure-economy: effect in the core). The footprint is the tuning
-	# invariant: the bonus is a multiple of it, so bumping space silently buffs the effect — tune COST
-	# instead. ---
-	"nomad_work_bonded_hold_cost": 30000,
-	"nomad_work_bonded_hold_space": 70,
-	"nomad_work_bonded_hold_staff": 10,
-	"nomad_work_bonded_berths_cost": 30000,
-	"nomad_work_bonded_berths_space": 70,
-	"nomad_work_bonded_berths_staff": 10,
-	# Bonded Hold adds mult x its footprint as a FLAT bonus to the shared storage pool.
-	# Bonded Berths adds mult x its footprint as extra berths.
-	"nomad_work_bonded_hold_storage_mult": 3.0,
-	"nomad_work_bonded_berths_mult": 3.0,
-
-	# --- Fleet-utility Works (campaign fleet stats). These five have FLEET-WIDE effects
-	# (survey / sensor profile / sensor range / slipstream reveal / +burn) so they carry a pctOfTotal
-	# share with a reduced flat footprint — a bigger Flotilla pays proportionally more for a benefit that
-	# scales with it. Watch-Officers (a fixed +1 officer) stays flat. ---
-	"nomad_work_chartroom_cost": 20000,
-	"nomad_work_chartroom_space": 36,
-	"nomad_work_chartroom_staff": 20,
-	"nomad_work_chartroom_pct_of_total": 0.02,
-	"nomad_work_chartroom_survey_mult": 0.75,         # survey cost x0.75 (25% cut)
-	"nomad_work_quiet_running_cost": 25000,
-	"nomad_work_quiet_running_space": 45,
-	"nomad_work_quiet_running_staff": 25,
-	"nomad_work_quiet_running_pct_of_total": 0.025,
-	"nomad_work_quiet_running_detected_mult": 0.75,   # fleet detected-at range x0.75
-	"nomad_work_civilian_band_watch_cost": 10000,  # floor of the cost range
-	"nomad_work_civilian_band_watch_space": 36,
-	"nomad_work_civilian_band_watch_staff": 15,
-	"nomad_work_civilian_band_watch_pct_of_total": 0.02,
-	"nomad_work_civilian_band_watch_sensor_pct": 25,  # +25% sensor range
-	"nomad_work_wayfinding_loft_cost": 12000,
-	"nomad_work_wayfinding_loft_space": 42,
-	"nomad_work_wayfinding_loft_staff": 20,
-	"nomad_work_wayfinding_loft_pct_of_total": 0.02,
-	"nomad_work_wayfinding_loft_reveal_ly": 8,        # slipstream discovery radius around the fleet
-	"nomad_work_tug_cradles_cost": 25000,
-	"nomad_work_tug_cradles_space": 45,
-	"nomad_work_tug_cradles_staff": 25,
-	"nomad_work_tug_cradles_pct_of_total": 0.025,
-	"nomad_work_tug_cradles_burn": 1,                 # +1 fleet burn, ONLY while every need is met
-	"nomad_work_watch_officers_cost": 50000,  # a premium Work
-	"nomad_work_watch_officers_space": 75,
-	"nomad_work_watch_officers_staff": 30,
-	"nomad_work_watch_officers_bonus": 1,             # +1 maximum officers
-
-	# --- Combat / recovery Works (per-ship on nomad-hullmod ships, or fleet recovery) ---
-	"nomad_work_militia_gunners_cost": 55000,
-	"nomad_work_militia_gunners_space": 80,
-	"nomad_work_militia_gunners_staff": 30,
-	"nomad_work_militia_gunners_pct_of_total": 0.10,  # a deliberately high pct-of-total share
-	"nomad_work_militia_gunners_pd_range": 100,       # +100 su PD weapon range
-	"nomad_work_militia_gunners_pd_damage_pct": 20,   # +20% PD weapon damage
-	"nomad_work_damage_control_watch_cost": 45000,        # display name "Militia Engineers" (id stays for save compat)
-	"nomad_work_damage_control_watch_space": 80,
-	"nomad_work_damage_control_watch_staff": 30,
-	"nomad_work_damage_control_watch_pct_of_total": 0.05,
-	"nomad_work_damage_control_watch_repair_mult": 0.67,  # weapon/engine in-combat repair time x0.67 (33% faster)
-	"nomad_work_pride_of_home_cost": 15000,
-	"nomad_work_pride_of_home_space": 70,
-	"nomad_work_pride_of_home_staff": 20,
-	"nomad_work_pride_of_home_pct_of_total": 0.03,
-	"nomad_work_pride_of_home_cr": 0.05,              # +5% max CR on crewed nomad ships
-	# Round-the-Clock Yards is fleet-WIDE CR/repair: pct share + reduced flat footprint.
-	"nomad_work_round_the_clock_yards_cost": 70000,  # a high-end fleet-recovery Work
-	"nomad_work_round_the_clock_yards_space": 63,
-	"nomad_work_round_the_clock_yards_staff": 40,
-	"nomad_work_round_the_clock_yards_pct_of_total": 0.03,
-	"nomad_work_round_the_clock_yards_cr_recovery_pct": 25,  # +25% CR recovery/day
-	"nomad_work_round_the_clock_yards_repair_pct": 25,       # +25% hull repair/day
-	"nomad_work_storm_rider_rig_cost": 15000,
-	"nomad_work_storm_rider_rig_space": 75,
-	"nomad_work_storm_rider_rig_staff": 20,
-	"nomad_work_storm_rider_rig_resist_mult": 0.5,    # hyperspace-storm / corona CR damage x0.5
-	"nomad_work_long_ward_cost": 15000,
-	"nomad_work_long_ward_space": 60,
-	"nomad_work_long_ward_staff": 20,
-	"nomad_work_long_ward_crew_return_frac": 0.25,    # 25% of crew lost in battle return as residents
-	# Levy Hall is fleet-WIDE ground-ops: pct share + reduced flat footprint.
-	"nomad_work_levy_hall_cost": 25000,
-	"nomad_work_levy_hall_space": 48,
-	"nomad_work_levy_hall_staff": 30,
-	"nomad_work_levy_hall_pct_of_total": 0.025,
-	"nomad_work_levy_hall_ground_raid_pct": 25,       # +25% ground operations strength
-	"nomad_work_levy_hall_marine_xp_monthly": 200,    # marine XP granted per month
-
-	# --- Economy / event Works (campaign-tick + listener effects) ---
-	"nomad_work_harbor_days_cost": 25000,
-	"nomad_work_harbor_days_space": 75,
-	"nomad_work_harbor_days_staff": 25,
-	"nomad_work_harbor_days_stability": 2,            # +2 stability at the orbited player colony
-	"nomad_work_harbor_days_immigration_bonus": 2,    # extra immigration weight at that colony
-	"nomad_work_harbor_days_intake_per_month": 3,     # residents joining the Flotilla per month while orbiting
-	"nomad_work_harbor_days_radius": 500,             # how close to the colony counts as "orbiting"
-	"nomad_work_pursers_kickbacks_cost": 15000,
-	"nomad_work_pursers_kickbacks_space": 70,
-	"nomad_work_pursers_kickbacks_staff": 20,
-	"nomad_work_pursers_kickbacks_rebate_frac": 0.02, # 2% credit rebate on purchases at markets
-
-	# --- Foundry Annex / Militia Dedication / Tinkering Facilities ---
-	# Foundry Annex — autoforge output x4 for a big, pricey footprint.
-	"nomad_work_foundry_annex_cost": 100000,
-	"nomad_work_foundry_annex_space": 90,
-	"nomad_work_foundry_annex_staff": 50,
-	"nomad_work_foundry_annex_pct_of_total": 0.10,
-	"nomad_work_foundry_annex_autoforge_mult": 4.0,   # autoforge points (and, at par, material draw) x this when built
-	# Militia Dedication — flotilla ships get longer peak operating time (CR / peak CR duration).
-	"nomad_work_militia_dedication_cost": 45000,
-	"nomad_work_militia_dedication_space": 60,
-	"nomad_work_militia_dedication_staff": 30,
-	"nomad_work_militia_dedication_ppt_pct": 25,      # +25% peak CR duration on nomad ships
-	# Tinkering Facilities — flotilla ships get +5% maneuver / top speed / flux dissipation / flux capacity.
-	"nomad_work_tinkering_facilities_cost": 25000,
-	"nomad_work_tinkering_facilities_space": 55,
-	"nomad_work_tinkering_facilities_staff": 25,
+	# Dormitory adds this many berths for each Space it takes.
+	"nomad_work_dormitory_mult": 3.0,
+	"nomad_work_tug_bay_burn": 1,                 # +1 fleet burn
+	"nomad_work_officer_academy_bonus": 1,             # +1 maximum officers
+	"nomad_work_storm_shielding_workshop_resist_mult": 0.5,    # hyperspace-storm / corona CR damage x0.5
+	"nomad_work_hospital_crew_return_frac": 0.25,    # 25% of crew lost in battle return as residents
+	"nomad_work_raid_training_ground_marine_xp_monthly": 200,    # marine XP granted per month
+	"nomad_work_passenger_terminal_stability": 2,            # +2 stability at the orbited player colony
+	"nomad_work_passenger_terminal_intake_per_month": 3,     # residents joining the Flotilla per month while orbiting
+	"nomad_work_passenger_terminal_radius": 500,             # how close to the colony counts as "orbiting"
+	"nomad_work_purchasing_office_rebate_frac": 0.02, # 2% credit rebate on purchases at markets
+	"nomad_work_watch_stations_ppt_pct": 25,      # +25% peak CR duration on nomad ships
 	"nomad_work_tinkering_facilities_stat_pct": 5,    # +5% each: turn rate, top speed, flux dissipation, flux capacity
 
-	# --- Refinery: metals AND rare_metals (transplutonics) yield x1.5, AND both lines' input RATIOS
-	# (metals<-ore, rare_metals<-rare_ore) drop by the reduction below while it is built - the Fuel Still
-	# pattern (a ratio cut, independent of yield; story-scaled by worksEffectMult and capped at 1 like the
-	# other reductions). The MID-game answer to the raw hunger of the input>output chains: a built
-	# Refinery cuts the ore/rare-ore draw of the metal chains by a third. Priced just under the Foundry
-	# Annex; footprint shaped like Forge-Vat. ---
-	"nomad_work_refinery_cost": 85000,
-	"nomad_work_refinery_space": 90,
-	"nomad_work_refinery_staff": 50,
-	"nomad_work_refinery_pct_of_total": 0.02,
-	"nomad_work_refinery_yield_mult": 1.5,            # metals + rare_metals yield x this when built
-	"nomad_work_refinery_input_reduction": 0.3333,    # metals<-ore + rare_metals<-rare_ore ratios x(1 - this) when built
-
-	# --- Colony-item effects. Magnitudes apply IDENTICALLY in both modes
-	# (nomad_item_effect_mult_story 1.0). Nanoforge
+	# --- Colony-item effects. Magnitudes apply IDENTICALLY at every difficulty
+	# (nomad_item_effect_mult_normal_difficulty 1.0). Nanoforge
 	# supplies bonuses: pristine replaces corrupted (no stack). ---
 	"nomad_item_soil_nanites_food": 0.50,
-	# Both of these are input-ratio cuts, not yield bonuses. The Catalytic Core cuts the SAME two ratios
-	# the Refinery cuts (metals<-ore, rare_metals<-rare_ore) and composes multiplicatively with it; the
-	# Synchrotron cuts the fuel line's volatiles ratio and composes with the Fuel Still the same way.
+	# Both of these are input-ratio cuts, not yield bonuses. The Catalytic Core cuts the Refinery's two
+	# ratios (metals<-ore, rare_metals<-rare_ore) and the Synchrotron cuts the Fuel Plant's volatiles.
 	"nomad_item_catalytic_core_ore_input": 0.20,
 	"nomad_item_synchrotron_fuel_input": 0.40,
 	# The two nanoforges are SPREAD APART deliberately: the gap between corrupted and
@@ -572,13 +301,18 @@
 	# (food takes no input, so an input cut would be meaningless).
 	"nomad_item_biofactory_food": 0.15,
 	"nomad_item_biofactory_luxury": 0.40,
-	# Fullerene Spool has BOTH its storage bonus and a global production-efficiency
-	# bonus (+3%), additive with the Cryoarithmetic +2% in one group (fold to +5% with both). FLAT / mode-independent.
-	"nomad_item_fullerene_spool_storage": 0.50,
+	# Two more Biofactory lines: it removes the Organ Harvester's resident input (the share removed,
+	# 1 is all of it, an input cut like the Catalytic Core's) and adds to the Cloning Vats' yield.
+	"nomad_item_biofactory_harvester_residents": 1.0,
+	"nomad_item_biofactory_vats": 0.25,
+	# The Fullerene Spool adds 5% to the Flotilla's Space (nomad_item_fullerene_spool_space, on the
+	# ships' figure or the one frozen at a split) and +3% global efficiency, additive with the
+	# Cryoarithmetic +2% in one group.
 	"nomad_item_fullerene_spool_efficiency": 0.03,
+	"nomad_item_fullerene_spool_space": 0.05,
 	# The Orbital Fusion Lamp berth bonus is FLAT (+10% berths in BOTH modes; itemEffectMult is not
-	# applied — NomadProduction.effectiveBerths). Berths are a CAPACITY (housing)
-	# effect, not a production/yield effect, so the Story multiplier does not scale them.
+	# applied). Berths are a CAPACITY (housing)
+	# effect, not a production/yield effect, so the difficulty's multiplier does not scale them.
 	"nomad_item_orbital_fusion_lamp_berths": 0.10,
 	# Plasma Dynamo: a single-resource booster, pitched just above Mantle Bore's general mining lift
 	# because it covers volatiles alone.
@@ -592,12 +326,14 @@
 	"nomad_item_cryoarithmetic_engine_efficiency": 0.02,
 	"nomad_item_coronal_portal_efficiency": 0.05,
 	"nomad_item_dealmaker_autoforge_cost": 0.10,
-	# Dealmaker Holosuite boosts the credits-line yield
-	# (mode-independent, like every item magnitude), keeping its autoforge-material
-	# discount above.
+	# The Dealmaker Holosuite raises the credits the Brokerage pays (mode-independent, like every
+	# item magnitude), beside its discount on the Foundry's materials above.
 	"nomad_item_dealmaker_credits": 0.20,
 	"nomad_item_drone_replicator_staff": 0.50,
-	# AI-core total-staffing cuts: the stronger the core, the bigger the cut.
+	# The Combat Drone Replicator also lifts the Military Fabricator's heavy armaments yield, half
+	# the game's +50% on ground defences. A yield line: the Fabricator uses 25% more inputs too.
+	"nomad_item_drone_replicator_armaments": 0.25,
+	# The AI cores cut the staff every Work needs: the stronger the core, the bigger the cut.
 	"nomad_item_core_staff_alpha": 0.07,
 	"nomad_item_core_staff_beta": 0.05,
 	"nomad_item_core_staff_gamma": 0.03,
@@ -618,19 +354,21 @@
 	# The board's whole acquisition path, and no code on either side of it. Captain's
 	# Quarters polls each configured flag and grants the furnishing when it turns true;
 	# settings.json deep-merges, so this adds an entry to that mod's own map rather than
-	# replacing it. $nomad_founded is set by the economy tick once the Flotilla exists,
-	# including on a save made before this update.
+	# replacing it. $nomad_founded is set by the economy tick once the Flotilla exists.
 	"cq_quest_rewards": {
 		"$nomad_founded": "nomad_tally_board",
 	},
 
 	# --- Founding & migrant pickup. Founding residents = min(founding_residents,
-	# founding_berth_frac x current berths) — 25 cap, small fleets seed smaller. ---
+	# founding_berth_frac x current berths): a 25 cap, and small fleets seed smaller. ---
 	"nomad_founding_residents": 25,
 	"nomad_founding_berth_frac": 1.0,
-	# After the flagship is installed the Flotilla assembles over this many in-game days
-	# before any residents arrive or production/growth/Works run; the founding contingent lands at the end.
-	"nomad_assembly_days": 4,
+	# A new Flotilla's target for each of the twelve stores every Flotilla keeps (the three
+	# contraband stores start at 0).
+	"nomad_founding_store_target": 5,
+	# Space every Flotilla has beyond what its ships and items give, for each of those twelve
+	# goods: 5 x 12 = 60 (Capacity.foundingSpace). Plain Space, and a target never changes it.
+	"nomad_founding_space_per_good": 5,
 	"nomad_pickup_min": 1,
 	"nomad_pickup_base": 10,
 	"nomad_pickup_size_coef": 0.0001,
@@ -639,11 +377,104 @@
 	# (stored per market as $nomad_lastPickupTs). 6 months.
 	"nomad_pickup_cooldown_days": 180,
 
-	# --- Autotransfers with the player fleet. Pull a Flotilla commodity below
-	# pull_below_frac of its cap up to pull_to_frac, from the player's SPARE only: supplies/fuel
-	# keep a floor of reserve_days of the fleet's own use / reserve_ly of jump fuel. ---
-	"nomad_autotransfer_pull_below_frac": 0.50,
-	"nomad_autotransfer_pull_to_frac": 0.50,
+	# --- The fleet's own reserve. A store's In flag fills it from fleet cargo and the Sell cargo
+	# flag sells from fleet cargo, both only from what the fleet holds above this many days of its
+	# own supplies and this many light-years of jump fuel. ---
 	"nomad_autotransfer_reserve_days_supplies": 30,
 	"nomad_autotransfer_reserve_ly_fuel": 10,
+
+	# --- Basic Needs. The Space no Work or store uses and the residents no Work employs belong
+	# to Basic Needs. At the Normal level it wants this much Space and this share of residents for
+	# each resident aboard; Normal difficulty and Story difficulty want that times their multiplier.
+	# Provision is what it has against what the Normal level wants, the lower of the Space figure
+	# and the residents figure. ---
+	"nomad_bn_space_per_resident": 1.0,
+	"nomad_bn_staff_per_resident": 0.35,
+	"nomad_bn_normal_difficulty_want_mult": 0.80,
+	"nomad_bn_story_difficulty_want_mult": 0.64,
+	# What Basic Needs requires falls as the Flotilla develops. Each size of each built Work that
+	# is not mothballed, disabled or suspended lowers it by nomad_bn_tier_relief, and so does each
+	# installed item (nomad_bn_item_tiers sizes an item), up to nomad_bn_tier_relief_cap together.
+	# A row's needs_raise raises it by that many sizes' worth, and needs_amenity lowers it, both
+	# outside the cap. The factor never goes under nomad_bn_requirement_floor. The difficulty's
+	# multiplier above multiplies the result. 0 relief turns the rule off.
+	"nomad_bn_tier_relief": 0.01,
+	"nomad_bn_tier_relief_cap": 0.40,
+	"nomad_bn_item_tiers": 1,
+	"nomad_bn_requirement_floor": 0.25,
+	# One block per level: the provision the level starts at, the global efficiency it sets, the
+	# share of residents that leave each month, and the growth each year.
+	# Global efficiency is the level's figure, times 1 plus what the items and the Guild Hall add,
+	# times the difficulty's multiplier. Every point of it scales what a Work uses as well as what
+	# it makes, Normal difficulty's and Story difficulty's included, so no bonus makes a chain
+	# thriftier.
+	# The three levels above Normal add 5% each. At 10% each every colony cap still holds.
+	# What bounds the step is the stores: a minimum target is measured at
+	# Opulent's efficiency, and with Opulent above 123% the Survival Mode start fleet's size 1
+	# pair no longer leaves Basic Needs the Space for Normal.
+	"nomad_bn_nonexistent_provision": 0.0,
+	"nomad_bn_nonexistent_efficiency": 0.0,
+	"nomad_bn_nonexistent_leave_per_month": 0.10,
+	"nomad_bn_nonexistent_growth_per_year": 0.0,
+	"nomad_bn_decrepit_provision": 0.40,
+	"nomad_bn_decrepit_efficiency": 0.30,
+	"nomad_bn_decrepit_leave_per_month": 0.04,
+	"nomad_bn_decrepit_growth_per_year": 0.0,
+	"nomad_bn_spartan_provision": 0.70,
+	"nomad_bn_spartan_efficiency": 0.70,
+	"nomad_bn_spartan_leave_per_month": 0.0,
+	"nomad_bn_spartan_growth_per_year": 0.0,
+	"nomad_bn_normal_provision": 1.00,
+	"nomad_bn_normal_efficiency": 1.00,
+	"nomad_bn_normal_leave_per_month": 0.0,
+	"nomad_bn_normal_growth_per_year": 0.02,
+	"nomad_bn_nice_provision": 1.25,
+	"nomad_bn_nice_efficiency": 1.05,
+	"nomad_bn_nice_leave_per_month": 0.0,
+	"nomad_bn_nice_growth_per_year": 0.04,
+	"nomad_bn_lavish_provision": 1.60,
+	"nomad_bn_lavish_efficiency": 1.10,
+	"nomad_bn_lavish_leave_per_month": 0.0,
+	"nomad_bn_lavish_growth_per_year": 0.06,
+	"nomad_bn_opulent_provision": 2.00,
+	"nomad_bn_opulent_efficiency": 1.15,
+	"nomad_bn_opulent_leave_per_month": 0.0,
+	"nomad_bn_opulent_growth_per_year": 0.08,
+
+	# --- The Fuel Plant in a game started in Survival Mode, with this mod's adjustments on. The mode
+	# triples fuel's price and leaves volatiles alone, which would turn the Fuel Plant's 3.5 credits of
+	# margin a fuel into 53.5. So the Fuel Plant uses more volatiles there: for each 1.0 the mode adds to
+	# fuel's price multiplier, this many times its normal amount more. The number is fuel's price
+	# over the price of the volatiles one fuel takes, 25 / (250 x 0.086) = 1.1628, which keeps the
+	# margin where it was. At the mode's x3 the Fuel Plant uses 1 + 2 x 1.1628 = 3.3256 times its normal
+	# volatiles, 0.286 a fuel. ---
+	"nomad_survival_fuel_plant_input_step": 1.1628,
+
+	# --- Store targets. A good reserves this much Space per unit of its target or its stock,
+	# whichever is larger. Story difficulty multiplies it by
+	# nomad_story_difficulty_storage_space_mult. ---
+	"nomad_store_space_per_unit": 1.0,
+
+	# --- Remote mining. With the Mining Rig's toggle on, the Rig mines the best surveyed body in
+	# the system at tier_mult times its deposit tier, never above cap. A system with no such body
+	# and an asteroid belt or field counts as one ore deposit of asteroid_tier. Turning the toggle
+	# on takes on_days; turning it off is at once. ---
+	"nomad_mining_remote_tier_mult": 0.2,
+	"nomad_mining_remote_cap": 0.4,
+	"nomad_mining_remote_asteroid_tier": 0.5,
+	"nomad_mining_remote_on_days": 10,
+
+	# --- The support limit. A Flotilla runs this many Fleet, Combat and Fortune Works at once,
+	# one more from the head count below, and one more from each doubling of that head count,
+	# without end: 200, 400, 800, 1,600 and so on. 0 turns the steps off. The Works past the
+	# limit are disabled, lowest in the staffing order first: they reserve their Space, take no staff
+	# and have no effect. Economy and Capacity Works are not counted. The limit is read at
+	# each economy tick. ---
+	"nomad_support_limit_base": 3,
+	"nomad_support_limit_first_at": 200,
+
+	# --- A Work behind a number of residents (a residents row in nomad_work_prereqs.csv) starts at
+	# that number, and once it runs it keeps running until the Flotilla is this share under it:
+	# 0.05 has a 2,000 row stop under 1,900. ---
+	"nomad_prereq_residents_slack": 0.05,
 }

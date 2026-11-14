@@ -1,3 +1,56 @@
+v2.0.0
+Not save compatible with previous versions of the mod. Can be added to existing saves.
+
+- Completely redesigned the mod to make it more user friendly, stronger, and easy to optimize with less micromanagement. If you found it annoying, weak, or finicky, try again!
+  - Allocations are gone. Everything the Flotilla does is now a Work that you build and upgrade, on a new Overview that looks like the colony screen.
+  - Residents take care of their own basic needs for free. They no longer consume food, supplies, domestic goods or luxury goods, and there are no more shortages.
+  - Stores manage themselves. Set a target for each commodity, and the store can refill from your cargo, move its excess to your cargo, or sell it.
+  - Bigger production Works are more efficient, and each Work has a priority. If you run short of residents, only the lowest priority Works stop.
+  - Added Remote mining, which lets the Mining Rig mine a little anywhere in a star system without waiting at a planet.
+- The Flotilla runs 3 support Works at once, one more at 200 residents, and one more each time that number doubles. Economy and Capacity Works do not count. The lowest priority Works past the limit are disabled until there is room.
+- Above 100% global efficiency, the Brokerage's credits get half of the increase. How much it can sell gets all of it.
+- Added the Panopticon, a support Work that gives +30% global efficiency while Basic Needs is Spartan.
+- Added the Restoration Bay, a support Work that lets you repair d-mods away from a market.
+- Added the Domain Parts Workshop, a support Work that lets the Foundry build Domain-grade Parts.
+- Added the Military Fabricator, a production Work that makes Heavy Armaments from Metals and Transplutonics.
+- Added the Drug Lab, a production Work that makes Recreational Drugs from Organics.
+- Added the Organ Harvester, a production Work that makes Harvested Organs from residents.
+- Added the Marine Barracks, a production Work that trains residents as marines and arms them with Heavy Armaments. The marines join your fleet, up to a target you set.
+- Added the Cloning Vats, a production Work that grows new residents from Food.
+- Added Lobster Farm, a production Work that makes Luxury Goods from Food.
+- Added Gate Freight Office, a support Work that pays credits each month the Flotilla goes through a Gate.
+- Added the School, a support Work that makes the population grow faster while Basic Needs is Normal or better.
+- Added Patrol Supply Depot, a support Work that pays credits each month while you hold a commission.
+- Added Cargo Shuttle Bay, a support Work that raises the accessibility of one of your colonies while the Flotilla orbits it.
+- Added Insurance Office, a support Work that pays part of a Nomad ship's base value when it is lost in battle.
+- Added the Assault Course, a support Work that makes marines from the Marine Barracks join with some experience.
+- Added Welding Shop, a support Work that makes Nomad ships need fewer supplies to recover and repair.
+- Added Shops, the Theater and Luxury Quarters, three support Works that lower what Basic Needs requires.
+- Renamed most Works.
+- The Biofactory Embryo now also stops the Organ Harvester from consuming residents, and gives the Cloning Vats +25% yield.
+- The Combat Drone Replicator now also gives the Military Fabricator +25% Heavy Armaments.
+- The Fullerene Spool now adds 5% to the Flotilla's Space instead of raising the store caps. It still gives +3% global efficiency.
+- The difficulties are now Auto, Survival, Normal and Story. Auto is the default: Survival in a Survival Mode game, and Normal otherwise.
+- Some Works, and the larger sizes of others, now have prerequisites.
+- If a detached Flotilla's supplies store runs out, you now owe the supplies its ships consume. You pay for them when the Flotilla rejoins.
+- After a detached Flotilla is destroyed, installing a new Nomad Flagship now founds a new Flotilla instead of resuming an empty one.
+- The Flotilla is now ready as soon as you install the Nomad Flagship, instead of assembling over a few days.
+- Fixed not being able to set a ship's Cargo and Quarters percentages right after adding a Nomad hullmod in the refit screen.
+- Updated for Starsector 0.98.5a.
+- Removed the deprecated Nomad Cargo, Quarters and Full Conversion hullmods.
+- Fixed ships built by the autoforge for a detached Flotilla losing their d-mods when the game saved.
+- Fixed a black bar along the bottom of the Supplies Factory illustration.
+- The Manage button no longer overrides your own keybinding for Y.
+- Added a setting for the Manage shortcut key.
+- Added Survival Mode support. The Flotilla adjusts to Survival Mode's prices, and a new setting can turn this off.
+- Fixed +ALL moving more crew into the Flotilla than it has berths for, and moving your fleet's skeleton crew.
+- Fixed weapons and fighter LPCs finished by a detached Flotilla being lost when it rejoins.
+- Fixed the top bar breaking other mods' changes to the character screen.
+- Fixed the top bar and the Flotilla screen showing the Flotilla as running after its flagship was lost, or as paused after it was back, until the next economy tick.
+- Fixed AI cores installed in a destroyed Flotilla not being left in its cargo pods.
+- Added a NomadAddResidents console command.
+- jars directory now has the zipped source code
+
 v1.5.1
 Save compatible. Can be added to existing saves.
 

@@ -1,0 +1,18 @@
+id,work,from_size,kind,value,at_least
+supplies_factory_4_item,supplies_factory,4,item,corrupted_nanoforge|pristine_nanoforge,
+slipstream_chart_room_3_item,slipstream_chart_room,3,item,cryoarithmetic_engine,
+raid_training_ground_2_ship,raid_training_ground,2,ship,valkyrie,
+restoration_bay_1_ship,restoration_bay,1,ship,crig,
+watch_stations_1_level,watch_stations,1,level,,6
+gunnery_range_3_level,gunnery_range,3,level,,10
+damage_control_room_3_officers,damage_control_room,3,officers,,4
+purchasing_office_1_standing,purchasing_office,1,standing,independent,FAVORABLE
+officer_academy_1_mission,officer_academy,1,mission,$gaATG_missionCompleted=At The Gates,
+lobster_farm_1_mission,lobster_farm,1,mission,$anh_missionCompleted=Passage To Volturn,
+gate_freight_office_1_mission,gate_freight_office,1,mission,$gaATG_missionCompleted=At The Gates,
+school_1_ship,school,1,ship,starliner|nebula,
+patrol_supply_depot_1_commission,patrol_supply_depot,1,commission,,
+cargo_shuttle_bay_1_colonies,cargo_shuttle_bay,1,colonies,,2
+insurance_office_1_contacts,insurance_office,1,contacts,,5
+assault_course_1_work,assault_course,1,work,marine_barracks,2
+welding_shop_1_residents,welding_shop,1,residents,,2000

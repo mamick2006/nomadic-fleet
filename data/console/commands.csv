@@ -1,0 +1,2 @@
+command,class,tags,syntax,help
+NomadAddResidents,nomad.console.NomadAddResidents,"nomad,cheat,campaign",NomadAddResidents <amount>,"Adds <amount> residents to the Flotilla, or as many as it has free berths for."
