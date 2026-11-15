@@ -1,3 +1,9 @@
+v2.0.1
+Save compatible. Can be added to existing saves.
+
+- The stores' flags are shown on every row, and a click on one turns it on or off.
+- Each Work's card shows its priority as an icon.
+
 v2.0.0
 Not save compatible with previous versions of the mod. Can be added to existing saves.
 

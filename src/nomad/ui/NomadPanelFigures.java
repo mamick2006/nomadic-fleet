@@ -214,6 +214,12 @@ public final class NomadPanelFigures {
     static final float WIDE_NET_RIGHT = 344f;
     static final float[] FLAG_X = { 356f, 384f, 416f, 444f };
     static final float[] FLAG_W = { 24f, 28f, 28f, 36f };
+    static final float MARK_GAP = 2f;
+    public static final float NARROW_FLAG_W = 16f;
+    static final float NARROW_NET_W = 38f;
+    static final float NARROW_GAP = 4f;
+    static final float NARROW_STOCK_W = 84f;
+    static final float NARROW_CAP_NET_W = 60f;
 
     static final float ORDER_LABEL_X = 6f;
     static final float STEP_X = 50f;
@@ -252,6 +258,7 @@ public final class NomadPanelFigures {
     public final NomadGrid.Box meter;
     public final NomadGrid.Box net;
     public final NomadGrid.Box[] flag;
+    public final NomadGrid.Box[] flagHit;
 
     public final NomadGrid.Box targetLabel;
     public final NomadGrid.Box[] step;
@@ -271,28 +278,44 @@ public final class NomadPanelFigures {
       this.rowsY = top(w);
       this.height = rowsY + this.rows * rowH + (this.open >= 0 ? ORDERS_H : 0f);
 
-      float netRight = wide ? WIDE_NET_RIGHT : w - NET_PAD;
+      int flags = FLAG_COLUMNS.length;
+      float[] flagX = new float[flags];
+      float[] flagW = new float[flags];
+      for (int i = 0; i < flags; i++) {
+        flagX[i] = wide ? FLAG_X[i] : w - (flags - i) * NARROW_FLAG_W;
+        flagW[i] = wide ? FLAG_W[i] : NARROW_FLAG_W;
+      }
+      float netRight = wide ? WIDE_NET_RIGHT : flagX[0] - NARROW_GAP;
+      float netW = wide ? NET_W : NARROW_NET_W;
+      float stockW = wide ? STOCK_W : NARROW_STOCK_W;
+      float markX = wide ? MARK_X : netRight - netW - MARK_GAP - MARK_PX;
+      float stockX = wide ? STOCK_X : markX - MARK_GAP - stockW;
+      float nameRight = (wide ? markX : stockX) - MARK_GAP;
       this.head = new NomadGrid.Box(0f, HEAD_Y, w - FILL_W - HEAD_GAP, HEAD_H);
       this.fill = new NomadGrid.Box(w - FILL_W, 0f, FILL_W, FILL_H);
-      this.capStock = new NomadGrid.Box(STOCK_X, CAPTION_Y, STOCK_W, 2f * LINE_H);
-      this.capNet = new NomadGrid.Box(netRight - NET_W, CAPTION_Y, NET_W, 2f * LINE_H);
-      int flags = wide ? FLAG_COLUMNS.length : 0;
+      this.capStock = new NomadGrid.Box(stockX + stockW - STOCK_W, CAPTION_Y, STOCK_W,
+          2f * LINE_H);
+      float capNetW = wide ? NET_W : NARROW_CAP_NET_W;
+      this.capNet = new NomadGrid.Box(netRight - netW / 2f - capNetW / 2f, CAPTION_Y, capNetW,
+          2f * LINE_H);
       this.capFlag = new NomadGrid.Box[flags];
       this.flag = new NomadGrid.Box[flags];
+      this.flagHit = new NomadGrid.Box[flags];
       for (int i = 0; i < flags; i++) {
-        boolean two = i == flags - 1;
-        capFlag[i] = new NomadGrid.Box(FLAG_X[i], CAPTION_Y + (two ? 0f : CAPTION_EXTRA), FLAG_W[i],
-            two ? 2f * LINE_H : LINE_H);
-        flag[i] = new NomadGrid.Box(FLAG_X[i], 1f, FLAG_W[i], LINE_H);
+        boolean two = wide && i == flags - 1;
+        capFlag[i] = new NomadGrid.Box(flagX[i], CAPTION_Y + (two ? 0f : CAPTION_EXTRA),
+            flagW[i], two ? 2f * LINE_H : LINE_H);
+        flag[i] = new NomadGrid.Box(flagX[i], 1f, flagW[i], LINE_H);
+        flagHit[i] = new NomadGrid.Box(flagX[i], 0f, flagW[i], rowH);
       }
 
       float iconPx = rowH >= NomadGrid.Screen.LEDGER_ROW_H ? 20f : 18f;
       this.icon = new NomadGrid.Box(0f, 1f, iconPx, iconPx);
-      this.name = new NomadGrid.Box(NAME_X, 1f, MARK_X - 2f - NAME_X, LINE_H);
-      this.mark = new NomadGrid.Box(MARK_X, 1f, MARK_PX, MARK_PX);
-      this.stock = new NomadGrid.Box(STOCK_X, 1f, STOCK_W, LINE_H);
-      this.meter = new NomadGrid.Box(STOCK_X, rowH - METER_H - 1f, STOCK_W, METER_H);
-      this.net = new NomadGrid.Box(netRight - NET_W, 1f, NET_W, LINE_H);
+      this.name = new NomadGrid.Box(NAME_X, 1f, nameRight - NAME_X, LINE_H);
+      this.mark = new NomadGrid.Box(markX, 1f, MARK_PX, MARK_PX);
+      this.stock = new NomadGrid.Box(stockX, 1f, stockW, LINE_H);
+      this.meter = new NomadGrid.Box(stockX, rowH - METER_H - 1f, stockW, METER_H);
+      this.net = new NomadGrid.Box(netRight - netW, 1f, netW, LINE_H);
 
       float textY = STEP_Y + (STEP_H - LINE_H) / 2f;
       this.targetLabel = new NomadGrid.Box(ORDER_LABEL_X, textY, STEP_X - 2f - ORDER_LABEL_X,

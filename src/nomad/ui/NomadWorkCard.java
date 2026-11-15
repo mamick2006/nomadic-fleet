@@ -17,6 +17,7 @@ import com.fs.starfarer.api.ui.TooltipMakerAPI;
 
 import nomad.NomadStrings;
 import nomad.campaign.econ.model.Capacity;
+import nomad.campaign.econ.model.Priority;
 import nomad.campaign.econ.model.TickSheet;
 import nomad.campaign.econ.model.WorkDef;
 import nomad.campaign.econ.model.WorkSize;
@@ -66,6 +67,8 @@ public final class NomadWorkCard {
     Chrome chrome = new Chrome(w, h, true, selected, hit);
     chrome.image = illustration(workId, def, w / NomadWorkCardModel.IMAGE_H);
     chrome.dim = face.dim;
+    chrome.priority = prioritySprite(state.priority());
+    chrome.priorityColor = priorityColor(state.priority());
     if (progress >= 0f) {
       chrome.bar = NomadWorkCardModel.bar(w, face.line == LineKind.BAR);
       chrome.progress = progress;
@@ -109,6 +112,46 @@ public final class NomadWorkCard {
 
     hitArea(panel, hit, NomadWorkActions.id(NomadWorkActions.Verb.SELECT, workId),
         NomadWorkHover.tip(view, workId));
+    NomadGrid.Box icon = NomadWorkCardModel.priorityBack(w);
+    if (chrome.priority != null && hit != null && icon.x >= hit.x && icon.right() <= hit.right()
+        && icon.y >= hit.y && icon.bottom() <= hit.bottom()) {
+      hitArea(panel, icon, NomadWorkActions.id(NomadWorkActions.Verb.SELECT, workId),
+          priorityTip(state.priority()));
+    }
+  }
+
+  private static TooltipMakerAPI.TooltipCreator priorityTip(final Priority p) {
+    return NomadTip.guard(new NomadTip() {
+      @Override
+      public void createTooltip(TooltipMakerAPI t, boolean expanded, Object param) {
+        String name = NomadFlotillaView.priorityName(p);
+        LabelAPI l = t.addPara(
+            NomadStrings.get("nomad_flotilla", "cards_tip_priority_current", name), 0f);
+        l.setHighlight(name);
+        l.setHighlightColor(NomadUi.hl());
+        t.addPara(NomadStrings.get("nomad_flotilla", "cards_tip_priority"), NomadUi.gray(), 6f);
+        t.addPara(NomadStrings.get("nomad_flotilla", "cards_priority_icon_change"),
+            NomadUi.good(), 10f);
+      }
+    });
+  }
+
+  private static SpriteAPI prioritySprite(Priority p) {
+    try {
+      return Global.getSettings().getSprite("icons", NomadWorkCardModel.priorityIconKey(p));
+    } catch (Exception e) {
+      return null;
+    }
+  }
+
+  private static Color priorityColor(Priority p) {
+    if (p == Priority.HIGH) {
+      return NomadUi.hl();
+    }
+    if (p == Priority.LOW) {
+      return NomadUi.gray();
+    }
+    return NomadUi.base();
   }
 
   private static void hitArea(CustomPanelAPI panel, NomadGrid.Box hit, String id,
@@ -373,6 +416,8 @@ public final class NomadWorkCard {
     private final Color barFill = barColor();
     SpriteAPI image;
     boolean dim;
+    SpriteAPI priority;
+    Color priorityColor;
     float progress = -1f;
     NomadGrid.Box bar;
     float boxH;
@@ -422,6 +467,16 @@ public final class NomadWorkCard {
       }
       if (over) {
         NomadGl.fillRect(x, imageY, w, NomadWorkCardModel.IMAGE_H, Color.WHITE, GLOW, alphaMult);
+      }
+      if (priority != null) {
+        NomadGrid.Box back = NomadWorkCardModel.priorityBack(w);
+        NomadGl.box(x + back.x, top - back.bottom(), back.w, back.h, Color.BLACK, 170,
+            NomadUi.dark(), 255, alphaMult);
+        NomadGrid.Box ic = NomadWorkCardModel.priorityIcon(w);
+        priority.setSize(ic.w, ic.h);
+        priority.setColor(priorityColor);
+        priority.setAlphaMult(alphaMult);
+        priority.render(Math.round(x + ic.x), Math.round(top - ic.bottom()));
       }
       if (bar != null) {
         float barY = top - bar.bottom();

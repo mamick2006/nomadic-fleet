@@ -41,6 +41,9 @@
 		"icons": {
 			"nomad_intel": "graphics/nomad/icons/nomad_intel.png",
 			"nomad_intel_ok": "graphics/nomad/icons/nomad_intel_ok.png",
+			"nomad_priority_high": "graphics/nomad/icons/nomad_priority_high.png",
+			"nomad_priority_medium": "graphics/nomad/icons/nomad_priority_medium.png",
+			"nomad_priority_low": "graphics/nomad/icons/nomad_priority_low.png",
 			"nomad_intel_short": "graphics/nomad/icons/nomad_intel_short.png",
 			"nomad_intel_paused": "graphics/nomad/icons/nomad_intel_paused.png",
 			"nomad_intel_detached": "graphics/nomad/icons/nomad_intel_detached.png",

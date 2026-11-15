@@ -337,9 +337,23 @@ public final class NomadStoresPanel {
     label(own, at.capNet, 0f, NomadStrings.get("nomad_flotilla", "ui2_stores_col_net"),
         NomadUi.gray(), Alignment.RMID);
     for (int i = 0; i < at.capFlag.length; i++) {
-      label(own, at.capFlag[i], 0f, flagName(NomadPanelFigures.FLAG_COLUMNS[i]), NomadUi.gray(),
+      int bit = NomadPanelFigures.FLAG_COLUMNS[i];
+      label(own, at.capFlag[i], 0f, at.wide ? flagName(bit) : flagLetter(bit), NomadUi.gray(),
           Alignment.MID);
     }
+  }
+
+  private static String flagLetter(int bit) {
+    if (bit == StoreFlags.IN) {
+      return NomadStrings.get("nomad_flotilla", "store_flag_in_letter");
+    }
+    if (bit == StoreFlags.OUT) {
+      return NomadStrings.get("nomad_flotilla", "store_flag_out_letter");
+    }
+    if (bit == StoreFlags.SELL) {
+      return NomadStrings.get("nomad_flotilla", "store_flag_sell_letter");
+    }
+    return NomadStrings.get("nomad_flotilla", "store_flag_sell_cargo_letter");
   }
 
   private static void row(CustomPanelAPI own, Paint paint, NomadPanelFigures.Ledger at, int i,
@@ -394,16 +408,18 @@ public final class NomadStoresPanel {
         net > 0.05f ? NomadUi.good() : net < -0.05f ? NomadUi.bad() : NomadUi.gray(),
         Alignment.RMID);
 
-    if (at.flag.length > 0) {
-      boolean[] on = NomadPanelFigures.rowFlags(view.state.flags(good));
-      Color c = view.state.flagsAct() ? NomadUi.base() : NomadUi.gray();
-      for (int k = 0; k < at.flag.length; k++) {
-        float mid = at.flag[k].x + at.flag[k].w / 2f;
-        if (on[k]) {
-          paint.tick(mid - 6f, y + 4f, 12f, c, 255);
-        } else {
-          paint.rect(mid - 1f, y + 9f, 2f, 2f, c, 110);
-        }
+    boolean[] on = NomadPanelFigures.rowFlags(view.state.flags(good));
+    Color c = view.live && view.state.flagsAct() ? NomadUi.base() : NomadUi.gray();
+    float px = NomadPanelFigures.Ledger.TICK_PX;
+    float by = y + (float) Math.floor((at.rowH - px) / 2f);
+    for (int k = 0; k < at.flag.length; k++) {
+      float bx = at.flag[k].x + (float) Math.floor((at.flag[k].w - px) / 2f);
+      if (on[k]) {
+        paint.rectOver(bx, by, px, px, c, 255);
+        paint.tickOver(bx, by, px, Color.BLACK, 255);
+      } else {
+        paint.rectOver(bx, by, px, px, Color.BLACK, 200);
+        paint.frameOver(bx, by, px, px, c, 200);
       }
     }
 
@@ -418,6 +434,53 @@ public final class NomadStoresPanel {
       }
     }), TooltipMakerAPI.TooltipLocation.RIGHT, false);
     NomadCell.place(own, hit, 0f, y);
+
+    int flags = view.state.flags(good);
+    boolean brokerage = view.work(Works.BROKERAGE) != null;
+    for (int k = 0; k < at.flagHit.length; k++) {
+      rowFlag(own, at.flagHit[k], y, good, NomadPanelFigures.FLAG_COLUMNS[k], on[k], brokerage,
+          view);
+    }
+  }
+
+  private static void rowFlag(CustomPanelAPI own, NomadGrid.Box at, float y, final String good,
+      final int bit, final boolean on, final boolean brokerage, final NomadFlotillaView view) {
+    TooltipMakerAPI cell = NomadCell.element(own, at.w, at.h);
+    ButtonAPI b = cell.addButton("",
+        NomadWorkActions.id(NomadWorkActions.Verb.FLAG, good, flagArg(bit)), CLEAR, CLEAR,
+        Alignment.MID, (CutStyle) null, at.w, at.h, 0f);
+    NomadUi.setEnabledSayingWhy(b, view.live);
+    cell.addTooltipToPrevious(NomadTip.guard(new NomadTip() {
+      @Override
+      public void createTooltip(TooltipMakerAPI t, boolean expanded, Object param) {
+        flagTipLines(t, bit, good, brokerage, view);
+        if (view.live) {
+          t.addPara(NomadStrings.get("nomad_flotilla",
+              on ? "store_flag_row_on" : "store_flag_row_off"), NomadUi.good(), OPAD);
+        }
+      }
+    }), TooltipMakerAPI.TooltipLocation.BELOW, false);
+    NomadCell.place(own, cell, at.x, y + at.y);
+  }
+
+  private static void flagTipLines(TooltipMakerAPI t, int bit, String good, boolean brokerage,
+      NomadFlotillaView view) {
+    flagTip(t, bit, NomadUi.commodityName(good));
+    if (NomadPanelFigures.showsReserve(bit, good)) {
+      reserveLine(t, good);
+    }
+    boolean sale = bit == StoreFlags.SELL || bit == StoreFlags.SELL_CARGO;
+    if (sale && !brokerage) {
+      t.addPara(NomadStrings.get("nomad_flotilla", "store_flag_no_brokerage"),
+          NomadUi.warn(), PAD * 2f);
+    }
+    if (!view.state.flagsAct()) {
+      t.addPara(NomadStrings.get("nomad_flotilla", "panels_store_tip_flags_idle"),
+          NomadUi.warn(), PAD * 2f);
+    }
+    if (!view.live) {
+      t.addPara(view.notLiveReason(), NomadUi.warn(), PAD * 2f);
+    }
   }
 
   private static void orders(CustomPanelAPI own, Paint paint, NomadPanelFigures.Ledger at,
@@ -525,18 +588,7 @@ public final class NomadStoresPanel {
     cell.addTooltipToPrevious(NomadTip.guard(new NomadTip() {
       @Override
       public void createTooltip(TooltipMakerAPI t, boolean expanded, Object param) {
-        flagTip(t, bit, NomadUi.commodityName(good));
-        if (NomadPanelFigures.showsReserve(bit, good)) {
-          reserveLine(t, good);
-        }
-        boolean sale = bit == StoreFlags.SELL || bit == StoreFlags.SELL_CARGO;
-        if (sale && !brokerage) {
-          t.addPara(NomadStrings.get("nomad_flotilla", "store_flag_no_brokerage"),
-              NomadUi.warn(), PAD * 2f);
-        }
-        if (!view.live) {
-          t.addPara(view.notLiveReason(), NomadUi.warn(), PAD * 2f);
-        }
+        flagTipLines(t, bit, good, brokerage, view);
       }
     }), TooltipMakerAPI.TooltipLocation.BELOW, false);
     NomadCell.place(own, cell, at.x, y + at.y);

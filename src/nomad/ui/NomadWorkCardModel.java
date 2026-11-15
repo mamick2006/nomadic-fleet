@@ -10,6 +10,7 @@ import nomad.campaign.econ.model.Foundry;
 import nomad.campaign.econ.model.Mining;
 import nomad.campaign.econ.model.Prereq;
 import nomad.campaign.econ.model.Prereqs;
+import nomad.campaign.econ.model.Priority;
 import nomad.campaign.econ.model.Production;
 import nomad.campaign.econ.model.StoreFlags;
 import nomad.campaign.econ.model.TickSheet;
@@ -39,6 +40,31 @@ public final class NomadWorkCardModel {
   public static final float MARK_PX = 18f;
   public static final float MARK_GAP = 4f;
   public static final float ADD_H = NomadGrid.ADD_H;
+
+  public static final float PRIORITY_PX = 16f;
+  public static final float PRIORITY_BACK = 20f;
+  public static final float PRIORITY_INSET = 3f;
+
+  public static NomadGrid.Box priorityBack(float w) {
+    return new NomadGrid.Box(w - PRIORITY_INSET - PRIORITY_BACK, NAME_H + PRIORITY_INSET,
+        PRIORITY_BACK, PRIORITY_BACK);
+  }
+
+  public static NomadGrid.Box priorityIcon(float w) {
+    NomadGrid.Box back = priorityBack(w);
+    float in = (PRIORITY_BACK - PRIORITY_PX) / 2f;
+    return new NomadGrid.Box(back.x + in, back.y + in, PRIORITY_PX, PRIORITY_PX);
+  }
+
+  public static String priorityIconKey(Priority p) {
+    if (p == Priority.HIGH) {
+      return "nomad_priority_high";
+    }
+    if (p == Priority.LOW) {
+      return "nomad_priority_low";
+    }
+    return "nomad_priority_medium";
+  }
 
   public static NomadGrid.Box nameBar(float w) {
     return new NomadGrid.Box(0f, 0f, w, NAME_H);
